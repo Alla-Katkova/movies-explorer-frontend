@@ -1,5 +1,3 @@
 export default function Movies({}) {
-  return (
-    <main>Movies Page</main>
-  )
+  return <main>Movies Page</main>;
 }
