@@ -10,7 +10,7 @@ import Movies from "../Movies/Movies.jsx";
 
 function App() {
   return (
-    <div className="App">
+    <div className="app">
       <FakeHeader />
       <Routes>
         <Route path="/signin" element={<Login />} />

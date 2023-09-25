@@ -1,15 +1,9 @@
-/* .nav-tab {
+.navbar {
   display: flex;
   gap: 10px;
 }
 
-@media (max-width: 500px) {
-  .nav-tab {
-    gap: 6px;
-  }
-}
-
-.nav-tab__link {
+.navbar__link-button {
   width: 96px;
   height: 36px;
   display: flex;
@@ -21,20 +15,18 @@
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
-  line-height: 1.33;
+  line-height: 16px;
   transition: all 0.2s ease-in-out;
 }
 
-.nav-tab__link:hover {
-  transform: translateY(-5px);
-  background-color: #3ddc84;
-}
+/* .navbar__link-button:hover {
+  
+} */
 
-@media (max-width: 500px) {
-  .nav-tab__link {
+@media (max-width: 320px) {
+  .navbar__link-button {
     width: 82px;
     height: 26px;
     font-size: 10px;
-    line-height: 1.6;
   }
-} */
+}
