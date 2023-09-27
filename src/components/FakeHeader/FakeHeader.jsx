@@ -9,6 +9,7 @@ export default function FakeHeader({}) {
       <Link to={"/movies"}>Фильмы</Link>
       <Link to={"/saved-movies"}>Сохраненные фильмы</Link>
       <Link to={"/profile"}>Профиль</Link>
+      <Link to={"/notfound"}>NotFound</Link>
     </header>
   );
 }

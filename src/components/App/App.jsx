@@ -7,6 +7,7 @@ import SavedMovies from "../SavedMovies/SavedMovies.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Movies from "../Movies/Movies.jsx";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Register />} />
+        <Route path="/notfound" element={<NotFound />} />
       </Routes>
     </div>
   );
