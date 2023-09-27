@@ -14,7 +14,6 @@ export default function Main({}) {
         <AboutProject />
         <Techs />
         <AboutMe />
-        <Portfolio />
       </main>
     </>
   );

@@ -1,7 +1,7 @@
 .techs {
   background-color: #272727;
   padding-top: 100px;
-  padding-bottom: 0px;
+  padding-bottom: 29px;
   padding-left: 70px;
   padding-right: 70px;
 }
@@ -21,7 +21,6 @@
 .techs__title {
   margin-top: 90px;
   margin-bottom: 0px;
-  /* padding-left: 28px; */
   font-weight: 400;
   font-size: 50px;
   line-height: 58px;
@@ -33,7 +32,6 @@
   font-size: 14px;
   line-height: 20px;
   text-align: center;
-  /* padding-left: 28px; */
   letter-spacing: -0.04em;
   max-width: 457px;
   margin: 26px 0 0;

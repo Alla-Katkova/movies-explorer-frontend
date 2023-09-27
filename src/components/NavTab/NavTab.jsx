@@ -3,9 +3,15 @@ export default function NavTab() {
   return (
     <section>
       <nav className="navbar">
-        <a className="navbar__link-button">О проекте</a>
-        <a className="navbar__link-button">Технологии</a>
-        <a className="navbar__link-button">Студент</a>
+        <a className="navbar__link-button" href="#">
+          О проекте
+        </a>
+        <a className="navbar__link-button" href="#">
+          Технологии
+        </a>
+        <a className="navbar__link-button" href="#">
+          Студент
+        </a>
       </nav>
     </section>
   );
