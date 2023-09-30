@@ -16,9 +16,15 @@
 }
 
 .movies-card__button_type_saved {
+  background-image: url(../../images/save3.svg);
+  border: none;
+  background-color: transparent;
 }
 
 .movies-card__button_type_unsaved {
+  background-image: url(../../images/save3d.svg);
+  border: none;
+  background-color: transparent;
 }
 
 .movies-card__description {

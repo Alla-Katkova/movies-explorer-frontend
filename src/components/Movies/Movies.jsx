@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer.jsx";
 
 const fakeCards = [
   {
-    src: "../../images/1.png",
+    src: "../../images/prpr.svg",
     title: "33 слова о дизайне",
     duration: "1ч 17м",
   },
@@ -72,10 +72,13 @@ export default function Movies(props) {
     <>
       {/* <Header /> */}
       <main className="movies">
-        {/* <SearchForm /> */}
+        <SearchForm />
         <MoviesCardList moviesData={fakeCards} />
-        <button className="movies__add-button">Ещё</button>
+        <div className="movies__add-button-container">
+          <button className="movies__add-button">Ещё</button>
+        </div>
       </main>
+
       <Footer />
     </>
   );

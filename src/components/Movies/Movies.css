@@ -1,7 +1,25 @@
 .movies {
+}
 
+.movies__add-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 76px;
+  margin-bottom: 80px;
 }
 
 .movies__add-button {
-  
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.52px;
+  /* text-rendering: optimizeLegibility; */
+  text-decoration: none;
+  /* letter-spacing: 0; */
+  width: 320px;
+  height: 36px;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  border: 1px solid #424242;
+  background-color: #202020;
 }
