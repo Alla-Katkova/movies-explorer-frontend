@@ -54,3 +54,10 @@
   padding-top: 8px;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .movies-card__preview {
+    width: 339px;
+    height: 190px;
+  }
+}
