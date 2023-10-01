@@ -49,13 +49,7 @@
 }
 
 .filter__switch {
-  display: flex;
-    align-items: center;
-    width: 89vw;
-    max-width: 1280px;
-    margin: auto;
-    justify-content: center;
-    background-color: #343434;
+
 }
 
 .filter__text {
