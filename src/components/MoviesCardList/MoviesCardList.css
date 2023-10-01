@@ -31,3 +31,11 @@
     width: 92.5vw;
   }
 }
+
+@media (max-width: 320px) {
+  .movies-list__cataloges {
+    grid-row-gap: 39px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    width: 81.5vw;
+  }
+}

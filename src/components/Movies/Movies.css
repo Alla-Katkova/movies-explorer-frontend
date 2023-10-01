@@ -25,3 +25,8 @@
   background-color: #202020;
 }
 
+@media (max-width: 320px) {
+  .movies__add-button { 
+    width: 240px;
+  }
+}
