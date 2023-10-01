@@ -8,15 +8,14 @@ export default function SearchForm() {
         <span className="search__error"></span>
         <button className="search__button" type="submit"></button>
       </form>
-      <label className="filter">
-        <input
-          className="filter__checkbox"
-          type="checkbox"
-          // checked={shortMovies ? true : false}
-        />
-        <span className="filter__switch"></span>
+
+      <div className="filter">
+        <label className="filter__checkbox">
+          <input className="filter__input" type="checkbox" />
+          <span className="filter__switch"></span>
+        </label>
         <span className="filter__text">Короткометражки</span>
-      </label>
+      </div>
     </section>
   );
 }

@@ -20,7 +20,9 @@ export default function MoviesCard({ movie, isSaved }) {
               onClick={() => {
                 console.log("click on button save to saved");
               }}
-            ></button>
+            >
+              Сохранить
+            </button>
           )}
           <img src={movie.src} className="movies-card__preview" />
         </div>
