@@ -1,8 +1,8 @@
-.movies-card {
+/* .movies-card {
 }
 
 .movies-card__item {
-}
+} */
 
 .movies-card__preview-container {
   position: relative;
@@ -37,6 +37,13 @@
   height: 21px;
   color: #ffffff;
   border-radius: 30px;
+}
+
+.movies-card__button_type_delete {
+  width: 21px;
+  height: 21px;
+  background-image: url(../../images/delete_icon.svg);
+  background-color: transparent;
 }
 
 .movies-card__description {

@@ -9,7 +9,7 @@ export default function MoviesCardList({ moviesData }) {
     <section className="movies-list">
       <ul className="movies-list__cataloges">
         {moviesData.map((movie) => (
-          <MoviesCard isSaved={randomTrueOrFalse()} movie={movie} />
+          <MoviesCard isSaved={randomTrueOrFalse()} movie={movie} key={movie.title} />
         ))}
       </ul>
     </section>
