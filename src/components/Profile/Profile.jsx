@@ -4,19 +4,19 @@ export default function Profile() {
   return (
     <main className="profile">
       <div className="profile__container">
-        <h2 className="profile__title">{"Привет, Алла!"}</h2>
+        <h2 className="profile__title">{"Привет, Виталий!"}</h2>
         <form className="profile__form">
-          <fieldset className="profile__inputs">
+          <fieldset className="profile__inputs profile__inputs-name">
             <label className="profile__label">
               Имя
-              <input className="profile__input profile__input-name" name="name" id="name" type="text" />
+              <input className="profile__input" name="name" id="name" type="text" />
             </label>
             <span className="profile__error-message" id="name-error"></span>
           </fieldset>
-          <fieldset className="profile__inputs">
+          <fieldset className="profile__inputs profile__inputs-email">
             <label className="profile__label">
-              Email
-              <input className="profile__input profile__input-email" name="email" id="email" type="email" />
+              E-mail
+              <input className="profile__input" name="email" id="email" type="email" />
             </label>
             <span className="profile__error-message" id="email-error"></span>
           </fieldset>
