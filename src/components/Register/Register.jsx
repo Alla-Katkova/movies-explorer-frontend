@@ -16,9 +16,9 @@ export default function Register() {
           <fieldset className="register__inputs">
             <label className="register__label">
               E-mail
-              <input className="register__input" name="name" id="name" type="text" />
+              <input className="register__input" name="email" id="email" type="text" />
             </label>
-            <span className="register__error-message" id="name-error"></span>
+            <span className="register__error-message" id="email-error"></span>
           </fieldset>
           <fieldset className="register__inputs">
             <label className="register__label">
