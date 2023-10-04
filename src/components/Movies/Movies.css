@@ -10,9 +10,7 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 14.52px;
-  /* text-rendering: optimizeLegibility; */
   text-decoration: none;
-  /* letter-spacing: 0; */
   width: 320px;
   height: 36px;
   color: #ffffff;
@@ -29,6 +27,6 @@
 }
 @media (max-width: 320px) {
   .movies__add-button-container {
-    margin-bottom: 131px;
+    margin-bottom: 128px;
   }
 }

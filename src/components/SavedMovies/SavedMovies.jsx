@@ -8,8 +8,10 @@ import { fakeCards } from "../../utils/constants";
 export default function SavedMovies(props) {
   return (
     <main className="saved-movies">
-      <SearchForm />
-      <MoviesCardList moviesData={fakeCards} />
+      <article className="saved-movies__container">
+        <SearchForm />
+        <MoviesCardList moviesData={fakeCards} />
+      </article>
       <Footer />
     </main>
   );
