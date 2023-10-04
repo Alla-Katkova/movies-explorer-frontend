@@ -1,6 +1,3 @@
-.movies {
-}
-
 .movies__add-button-container {
   display: flex;
   justify-content: center;
@@ -26,7 +23,12 @@
 }
 
 @media (max-width: 320px) {
-  .movies__add-button { 
+  .movies__add-button {
     width: 240px;
+  }
+}
+@media (max-width: 320px) {
+  .movies__add-button-container {
+    margin-bottom: 131px;
   }
 }

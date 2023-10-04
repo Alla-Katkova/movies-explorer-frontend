@@ -16,7 +16,6 @@ export default function Movies(props) {
           <button className="movies__add-button">Ещё</button>
         </div>
       </main>
-
       <Footer />
     </>
   );

@@ -4,13 +4,13 @@
 }
 
 .movies-list__cataloges {
-  padding: 80px 0 0;
+  padding: 69px 0 0;
   width: 90vw;
   max-width: 1280px;
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, auto));
-  grid-row-gap: 60px;
+  grid-row-gap: 55px;
   grid-column-gap: 30px;
   justify-content: center;
   list-style-type: none;
@@ -37,5 +37,7 @@
     grid-row-gap: 39px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
     width: 81.5vw;
+    padding-top: 0px;
+    margin-top: 48px;
   }
 }

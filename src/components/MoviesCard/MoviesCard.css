@@ -59,6 +59,7 @@
   font-weight: 500;
   line-height: 15.73px;
   width: 250px;
+  margin-bottom: 0px;
 }
 .movies-card__duration {
   font-size: 11px;
@@ -79,6 +80,14 @@
   .movies-card__preview {
     width: 339px;
     height: 190px;
+  }
+}
+
+@media (max-width: 768px) {
+  .movies-card__description {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 13px;
   }
 }
 
