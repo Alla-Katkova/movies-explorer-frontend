@@ -5,8 +5,10 @@ import HomeButton from "../HomeButton/HomeButton.jsx";
 export default function Header() {
   return (
     <header className="header">
-      <HomeButton />
-      <Navigation />
+      <div className="header__container">
+        <HomeButton />
+        <Navigation />
+      </div>
     </header>
   );
 }

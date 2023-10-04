@@ -1,0 +1,33 @@
+.navigation {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: space-between; */
+}
+.navigation__list {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  width: 1140px;
+  padding: 0px;
+}
+
+.navigation__link {
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.navigation__link_type_account {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 16px;
+  background-color: #313131;
+  border-radius: 20px;
+}
+
+.navigation__item_type_account {
+  /* width: 100px;
+  height: 32px; */
+}

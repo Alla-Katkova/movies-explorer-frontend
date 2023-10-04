@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Navigation.css";
 
 export default function Navigation() {
@@ -5,38 +6,22 @@ export default function Navigation() {
   return (
     <>
       {loggedIn ? (
-        <nav
-          className="navigation"
-          // className={`navigation navigation_state_${isBurgerOpened ? "opened" : "closed"}`}
-          // onClick={isBurgerOpened ? onClickBurger : undefined}
-        >
-          {/* <Hamburger isBurgerOpened={isBurgerOpened} onClickBurger={onClickBurger} /> */}
-          <ul
-            className="navigation__list"
-            // className={`navigation__list navigation__list_logged navigation__list_state_${isBurgerOpened ? "opened" : "closed"}`}
-            // onClick={handleClickOverlay}
-          >
-            {/* {isBurgerOpened && (
-              <li className="navigation__item">
-                <Link exact to="/" className="navigation__link" >
-                  Главная
-                </Link>
-              </li>
-            )} */}
+        <nav className="navigation">
+          <ul className="navigation__list">
             <li className="navigation__item">
-              <NavLink to="/movies" className="navigation__link" activeClassName={activeLink}>
+              <Link to="/movies" className="navigation__link">
                 Фильмы
-              </NavLink>
+              </Link>
             </li>
             <li className="navigation__item">
-              <NavLink to="/saved-movies" className="navigation__link" activeClassName={activeLink}>
+              <Link to="/saved-movies" className="navigation__link">
                 Сохранённые фильмы
-              </NavLink>
+              </Link>
             </li>
-            <li className="navigation__item">
-              <NavLink to="/profile" className="navigation__link navigation__link_type_account" activeClassName={activeLink}>
+            <li className="navigation__item navigation__item_type_account">
+              <Link to="/profile" className="navigation__link navigation__link_type_account">
                 Аккаунт
-              </NavLink>
+              </Link>
             </li>
           </ul>
         </nav>

@@ -1,0 +1,9 @@
+.header {
+  margin-left: 70px;
+  margin-right: 70px;
+}
+
+.header__container {
+  display: flex;
+  flex-direction: row;
+}
