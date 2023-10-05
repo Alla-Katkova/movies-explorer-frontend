@@ -12,11 +12,16 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
 
   return (
     <div className={`hamburger-menu ${isOpened ? "" : "hamburger-menu_type_hidden"}`}>
-      <button type={"button"} className={"close-button"} onClick={hideMenu}>
-        XXX
+      <button type="button" className="hamburger-menu__close-button" onClick={hideMenu}>
+        +
       </button>
       <nav className={`hamburger-menu__nav`}>
         <ul className="hamburger-menu__list">
+          <li className="hamburger-menu__item">
+            <NavLink to="/" className="hamburger-menu__link">
+              Главная
+            </NavLink>
+          </li>
           <li className="hamburger-menu__item">
             <NavLink to="/movies" className="hamburger-menu__link">
               Фильмы в бургере
