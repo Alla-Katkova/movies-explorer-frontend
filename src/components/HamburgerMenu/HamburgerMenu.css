@@ -8,7 +8,8 @@
 
 @media screen and (max-width: 768px) {
   .hamburger-menu {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     background-color: #202020;
     top: 0;
@@ -80,6 +81,22 @@
   .hamburger-menu__item-container {
     display: flex;
     justify-content: center;
-    
+  }
+}
+@media screen and (max-width: 320px) {
+  .hamburger-menu {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .hamburger-menu__close-button {
+    left: 295px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .hamburger-menu__item_type_account {
+    margin-top: 444px;
   }
 }
