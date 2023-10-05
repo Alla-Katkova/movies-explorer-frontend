@@ -7,13 +7,13 @@ import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Movies from "../Movies/Movies.jsx";
 import NotFound from "../NotFound/NotFound";
-import Header from "../Header/Header.jsx";
+// import Header from "../Header/Header.jsx";
 
 function App() {
   return (
     <div className="app">
       {/*<FakeHeader />*/}
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route path="/signin" element={<Login />} />
         <Route path="/" element={<Main />} />

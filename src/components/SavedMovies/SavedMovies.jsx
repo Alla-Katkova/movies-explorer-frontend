@@ -1,4 +1,4 @@
-// import Header from "../Header/Header";
+import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 import "./SavedMovies.css";
@@ -7,12 +7,15 @@ import { fakeCards } from "../../utils/constants";
 
 export default function SavedMovies(props) {
   return (
-    <main className="saved-movies">
-      <article className="saved-movies__container">
-        <SearchForm />
-        <MoviesCardList moviesData={fakeCards} />
-      </article>
-      <Footer />
-    </main>
+    <>
+      <Header />
+      <main className="saved-movies">
+        <article className="saved-movies__container">
+          <SearchForm />
+          <MoviesCardList moviesData={fakeCards} />
+        </article>
+        <Footer />
+      </main>
+    </>
   );
 }

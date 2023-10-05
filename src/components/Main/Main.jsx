@@ -1,4 +1,4 @@
-// import Header from "../Header/Header.jsx";
+import Header from "../Header/Header.jsx";
 import Promo from "../Promo/Promo.jsx";
 import AboutProject from "../AboutProject/AboutProject";
 import Techs from "../Techs/Techs.jsx";
@@ -8,7 +8,7 @@ import Footer from "../Footer/Footer.jsx";
 export default function Main({}) {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main className="promo__container">
         <Promo />
         <AboutProject />

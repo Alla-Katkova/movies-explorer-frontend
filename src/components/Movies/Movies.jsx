@@ -1,14 +1,14 @@
 import "./Movies.css";
 import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
 import SearchForm from "../SearchForm/SearchForm.jsx";
-// import Header from "../Header/Header.jsx";
+import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import { fakeCards } from "../../utils/constants";
 
 export default function Movies(props) {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main className="movies">
         <SearchForm />
         <MoviesCardList moviesData={fakeCards} />
