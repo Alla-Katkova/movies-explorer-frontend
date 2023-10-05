@@ -1,6 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import FakeHeader from "../FakeHeader/FakeHeader.jsx";
 import Main from "../Main/Main.jsx";
 import Login from "../Login/Login.jsx";
 import SavedMovies from "../SavedMovies/SavedMovies.jsx";
@@ -13,7 +12,7 @@ import Header from "../Header/Header.jsx";
 function App() {
   return (
     <div className="app">
-      <FakeHeader />
+      {/*<FakeHeader />*/}
       <Header />
       <Routes>
         <Route path="/signin" element={<Login />} />
@@ -22,7 +21,7 @@ function App() {
         <Route path="/saved-movies" element={<SavedMovies />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/signup" element={<Register />} />
-        <Route path="/notfound" element={<NotFound />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

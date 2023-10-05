@@ -1,45 +1,34 @@
 import { Link } from "react-router-dom";
 import "./Navigation.css";
+import Hamburger from "../Hamburger/Hamburger";
+import { useState } from "react";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
+import DesktopMenu from "../DesktopMenu/DesktopMenu";
+import "./Navigation.css";
+import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 
 export default function Navigation() {
   const loggedIn = true;
+  const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
+  const onClickBurger = () => {
+    if (isHamburgerMenuOpened) {
+      setIsHamburgerMenuOpened(false);
+    } else {
+      setIsHamburgerMenuOpened(true);
+    }
+  };
+
+  const navigationStateClass = isHamburgerMenuOpened ? "navigation_state_on" : "navigation_state_off";
   return (
     <>
       {loggedIn ? (
-        <nav className="navigation">
-          <ul className="navigation__list">
-            <li className="navigation__item">
-              <Link to="/movies" className="navigation__link">
-                Фильмы
-              </Link>
-            </li>
-            <li className="navigation__item">
-              <Link to="/saved-movies" className="navigation__link">
-                Сохранённые фильмы
-              </Link>
-            </li>
-            <li className="navigation__item navigation__item_type_account">
-              <Link to="/profile" className="navigation__link navigation__link_type_account">
-                Аккаунт
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <>
+          <Hamburger isBurgerOpened={isHamburgerMenuOpened} onClickBurger={onClickBurger} />
+          <HamburgerMenu isOpened={isHamburgerMenuOpened} setIsOpened={setIsHamburgerMenuOpened} />
+          <DesktopMenu />
+        </>
       ) : (
-        <nav className="navigation">
-          <ul className="navigation__list">
-            <li>
-              <Link to="/signup" className="navigation__link navigation__link_landing">
-                Регистрация
-              </Link>
-            </li>
-            <li>
-              <Link to="/signin" className="navigation__link navigation__link_landing navigation__link_signin">
-                Войти
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <LoggedOutUserMenu />
       )}
     </>
   );

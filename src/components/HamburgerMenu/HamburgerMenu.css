@@ -1,0 +1,21 @@
+.hamburger-menu {
+    display: none;
+}
+
+.hamburger-menu__link.active {
+    background-color: cyan;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+        position: absolute;
+        background-color: #4285F4;
+        top: 0;
+        right: 0;
+        width: 520px;
+    }
+    .hamburger-menu_type_hidden {
+        visibility: hidden;
+    }
+}
