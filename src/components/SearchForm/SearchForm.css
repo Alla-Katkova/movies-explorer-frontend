@@ -131,13 +131,13 @@
     margin-top: 47px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .search {
     margin-left: 14px;
     margin-right: 14px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 400px) {
   .search__input {
     margin-right: 0px;
     margin-left: 0px;

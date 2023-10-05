@@ -3,7 +3,7 @@ import "./DesktopMenu.css";
 
 export default function DesktopMenu() {
   return (
-    <nav className="navigation navigation_type_hidden">
+    <nav className="navigation">
       <ul className="navigation__list">
         <li className="navigation__item">
           <NavLink to="/movies" className="navigation__link">

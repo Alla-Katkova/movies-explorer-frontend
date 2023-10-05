@@ -34,10 +34,12 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
           </li>
         </ul>
       </nav>
-      <div className="hamburger-menu__item_type_account">
-        <NavLink to="/profile" className="hamburger-menu__link hamburger-menu__link_type_account">
-          Аккаунт в гамбургере
-        </NavLink>
+      <div className="hamburger-menu__item-container">
+        <button className="hamburger-menu__item hamburger-menu__item_type_account">
+          <NavLink to="/profile" className="hamburger-menu__link hamburger-menu__link_type_account">
+            Аккаунт
+          </NavLink>
+        </button>
       </div>
     </div>
   );
