@@ -8,7 +8,7 @@ import "./Navigation.css";
 import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 
 export default function Navigation() {
-  const loggedIn = true;
+  const loggedIn = false;
   const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
   const onClickBurger = () => {
     if (isHamburgerMenuOpened) {

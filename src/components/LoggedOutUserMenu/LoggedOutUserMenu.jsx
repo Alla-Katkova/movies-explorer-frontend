@@ -1,20 +1,19 @@
 import { Link } from "react-router-dom";
+import "./LoggedOutUserMenu.css";
 
 export default function LoggedOutUserMenu() {
   return (
-    <nav className="navigation1">
-      <ul className="navigation1__list">
-        <li>
-          <Link to="/signup" className="navigation1__link navigation1__link_landing">
-            Регистрация
-          </Link>
-        </li>
-        <li>
-          <Link to="/signin" className="navigation1__link navigation1__link_landing navigation1__link_signin">
-            Войти
-          </Link>
-        </li>
-      </ul>
+    <nav className="logout">
+      <button className="logout__button-registration">
+        <Link to="/signup" className="logout__link-registration">
+          Регистрация
+        </Link>
+      </button>
+      <button className="logout__button-signin">
+        <Link to="/signin" className="logout__link-signin">
+          Войти
+        </Link>
+      </button>
     </nav>
   );
 }
