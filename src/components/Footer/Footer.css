@@ -69,12 +69,14 @@
   .footer__container {
     flex-direction: column-reverse;
     text-align: center;
+    padding-top: 29px;
   }
 }
 
 @media (max-width: 320px) {
   .footer__list {
     flex-direction: column;
+    gap: 8px;
   }
 }
 
@@ -85,6 +87,6 @@
 }
 @media (max-width: 320px) {
   .footer__year {
-    padding-top: 24px;
+    padding-top: 29px;
   }
 }
