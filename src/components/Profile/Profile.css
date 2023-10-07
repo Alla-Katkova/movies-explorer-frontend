@@ -73,6 +73,11 @@
   line-height: 15.73px;
 }
 
+.profile__button:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
 .profile__button-signout {
   color: #ee3465;
   font-weight: 500;

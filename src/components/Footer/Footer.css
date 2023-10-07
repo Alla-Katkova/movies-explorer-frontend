@@ -49,6 +49,11 @@
   color: #ffffff;
 }
 
+.footer__item-link:hover {
+  opacity: 70%;
+  cursor: pointer
+}
+
 @media (max-width: 768px) {
   .footer {
     margin-top: 46px;

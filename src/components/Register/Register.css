@@ -81,6 +81,11 @@
   border-radius: 3px;
 }
 
+.register__button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .register__link-container {
   display: flex;
   flex-direction: row;
@@ -88,18 +93,30 @@
   justify-content: center;
   gap: 6px;
 }
+
 .register__link-already-registered {
   color: #8b8b8b;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.94px;
 }
+.register__link-already-registered:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
 .register__link-signin {
   color: #4285f4;
   font-size: 14px;
   font-weight: 400;
   line-height: 16.94px;
 }
+
+.register__link-signin:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
   .register {

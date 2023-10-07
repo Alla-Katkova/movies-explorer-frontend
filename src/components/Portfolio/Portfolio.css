@@ -32,11 +32,16 @@
 .portfolio__link {
   text-decoration: none;
   align-items: center;
-  color: #fff;
+  color: #ffffff;
   display: flex;
   font-size: 30px;
   font-weight: 400;
   justify-content: space-between;
+}
+
+.portfolio__link:hover {
+  opacity: 70%;
+  cursor: pointer;
 }
 
 .portfolio__link-arrow {

@@ -15,6 +15,11 @@
   border: none;
 }
 
+.movies-card__button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
 .movies-card__button_type_saved {
   background-image: url(../../images/save3.svg);
   background-color: transparent;

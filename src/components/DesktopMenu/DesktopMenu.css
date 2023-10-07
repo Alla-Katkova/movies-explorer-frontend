@@ -38,7 +38,12 @@
   width: 100px;
   height: 32px;
   margin-top: 21px;
-  margin-bottom: 21px;
+  margin-bottom: 21px; 
+}
+
+.navigation__item_type_account:hover {
+  opacity: 80%;
+  cursor: pointer;
 }
 
 .navigation_state_on {
@@ -47,4 +52,10 @@
 
 .navigation_state_off {
   visibility: hidden;
+}
+
+.navigation__link.active {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 18px;
 }

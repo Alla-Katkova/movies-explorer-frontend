@@ -3,7 +3,7 @@
 }
 
 .hamburger-menu__link.active {
-  border-bottom: #ffffff 1px solid;
+  border-bottom: #ffffff 2px solid;
 }
 
 @media screen and (max-width: 768px) {

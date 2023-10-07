@@ -19,6 +19,10 @@
   border: 1px solid #424242;
   background-color: #202020;
 }
+.movies__add-button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
 
 @media (max-width: 320px) {
   .movies__add-button {

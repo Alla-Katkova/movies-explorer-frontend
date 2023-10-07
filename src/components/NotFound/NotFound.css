@@ -39,6 +39,11 @@
   margin-bottom: 60px;
 }
 
+.not-found__link:hover {
+  opacity: 70%;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
 .not-found__container {
   margin-top: 408px;
