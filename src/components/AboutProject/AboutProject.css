@@ -1,0 +1,167 @@
+.about {
+  padding-top: 110px;
+  margin-left: 70px;
+  margin-right: 70px;
+  padding-bottom: 110px;
+}
+
+.title {
+  border-bottom: 1px solid #dadada;
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 26.63px;
+  margin: 0;
+  padding-bottom: 23px;
+  letter-spacing: -0.04em;
+}
+
+.about__container {
+  align-items: center;
+  display: flex;
+  gap: 54px;
+  margin-bottom: 110px;
+  padding-top: 70px;
+}
+
+.about__summary-title {
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.21;
+  margin-bottom: 26px;
+  margin-top: 0px;
+}
+
+.about__summary-subtitle {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+}
+
+.progressline {
+  display: flex;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16.94px;
+  text-align: center;
+}
+
+.progressline__backend {
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+
+.progressline__frontend {
+  flex-grow: 8;
+  flex-shrink: 1;
+  flex-basis: 0%;
+}
+
+.progressline__line {
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 14px;
+  margin-left: 0px;
+  padding-top: 9px;
+  padding-right: 14px;
+  padding-bottom: 9px;
+  padding-left: 14px;
+  background-color: #303030;
+}
+
+.progressline__line_type_green {
+  background-color: #3ddc84;
+  color: #000000;
+}
+
+.progressline__text {
+  color: #8b8b8b;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding-top: 90px;
+    padding-bottom: 85px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 50px;
+    margin-left: 50px;
+
+  }
+}
+@media (max-width: 768px) {
+  .about__container {
+    gap: 30px;
+    margin-bottom: 93px;
+    padding-top: 70px;
+  }
+}
+@media (max-width: 768px) {
+  .about__summary-subtitle {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 320px) {
+  .about {
+    padding-top: 70px;
+    padding-right: 0px;
+    padding-bottom: 62px;
+    padding-left: 4px;
+    margin-left: 16px;
+    margin-right: 17px;
+  }
+}
+
+@media (max-width: 320px) {
+  .about__container {
+    padding-top: 60px;
+    flex-direction: column;
+    gap: 56px;
+    margin-bottom: 60px;
+  }
+}
+
+@media (max-width: 320px) {
+  .title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21.78px;
+    padding-bottom: 28px;
+  }
+}
+
+@media (max-width: 320px) {
+  .about__summary-title {
+    font-size: 18px;
+    line-height: 21.78px;
+    margin-bottom: 17px;
+  }
+}
+@media (max-width: 320px) {
+  .about__summary-subtitle {
+    font-size: 11px;
+    line-height: 16px;
+  }
+}
+@media (max-width: 320px) {
+  .progressline {
+    font-size: 11px;
+    line-height: 13.31px;
+  }
+}
+@media (max-width: 320px) {
+  .progressline__backend {
+    flex: 1 1;
+  }
+}
+
+@media (max-width: 320px) {
+  .progressline__frontend {
+    flex: 2 1;
+  }
+}

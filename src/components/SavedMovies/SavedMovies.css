@@ -1,0 +1,9 @@
+.saved-movies__container {
+  padding-bottom: 242px;
+}
+
+@media (max-width: 768px) {
+  .saved-movies__container {
+    padding-bottom: 204px;
+  }
+}

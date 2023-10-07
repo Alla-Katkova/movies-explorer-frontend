@@ -1,0 +1,33 @@
+.navbar {
+  display: flex;
+  gap: 10px;
+}
+
+.navbar__link-button {
+  width: 96px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #303030;
+  border-radius: 10px;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navbar__link-button:hover {
+  opacity: 80%;
+  cursor: pointer;
+}
+
+@media (max-width: 320px) {
+  .navbar__link-button {
+    width: 82px;
+    height: 26px;
+    font-size: 10px;
+  }
+}
