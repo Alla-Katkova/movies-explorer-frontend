@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./Navigation.css";
 import Hamburger from "../Hamburger/Hamburger";
 import { useState } from "react";
@@ -8,7 +7,7 @@ import "./Navigation.css";
 import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 
 export default function Navigation() {
-  const loggedIn = false;
+  const loggedIn = true;
   const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
   const onClickBurger = () => {
     if (isHamburgerMenuOpened) {
