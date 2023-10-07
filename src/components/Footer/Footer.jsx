@@ -13,7 +13,7 @@ export default function Footer() {
             </a>
           </li>
           <li className="footer__item">
-            <a className="footer__item-link" href="#">
+            <a className="footer__item-link" href="https://github.com/Alla-Katkova">
               Github
             </a>
           </li>

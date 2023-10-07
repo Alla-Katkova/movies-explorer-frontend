@@ -28,8 +28,10 @@ export default function Login() {
         <div className="login__button-common-container">
           <button className="login__button">Войти</button>
           <div className="login__link-container">
-            <a className="login__link-already-registered">Еще не зарегистрированы?</a>
-            <a className="login__link-signin">Регистрация</a>
+            <span className="login__link-already-registered">Еще не зарегистрированы?</span>
+            <a className="login__link-signin" href="/signup">
+              Регистрация
+            </a>
           </div>
         </div>
       </div>

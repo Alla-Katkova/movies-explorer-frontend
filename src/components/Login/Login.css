@@ -99,11 +99,6 @@
   line-height: 16.94px;
 }
 
-.login__link-already-registered:hover {
-  opacity: 70%;
-  cursor: pointer;
-}
-
 .login__link-signin {
   color: #4285f4;
   font-size: 14px;
