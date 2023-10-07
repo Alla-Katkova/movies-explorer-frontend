@@ -124,6 +124,7 @@
 @media (max-width: 410px) {
   .register__container {
     max-width: 320px;
+    padding-top: 45px;
   }
 }
 
@@ -143,17 +144,19 @@
     margin-left: auto;
     margin-right: auto;
     width: 260px;
+    margin-top: 77px;
   }
 }
 
 @media (max-width: 410px) {
   .register__button {
     width: 260px;
+    
   }
 }
 @media (max-width: 410px) {
   .register__button-common-container {
-    margin-top: 157px;
+    margin-top: 169px;
   }
 }
 
