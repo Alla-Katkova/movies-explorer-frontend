@@ -27,7 +27,9 @@ export default function Profile() {
               <button className="profile__button profile__button-edit" type="submit">
                 Редактировать
               </button>
-              <button className="profile__button profile__button-signout">Выйти из аккаунта</button>
+              <a href="/" className="profile__button profile__button-signout">
+                Выйти из аккаунта
+              </a>
             </div>
           </form>
         </div>

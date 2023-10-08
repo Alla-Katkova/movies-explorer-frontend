@@ -14,7 +14,7 @@ export default function AboutMe() {
             Хочу работать и развиваться в IT-сфере. Умею брать на себя инициативу, но также замечательно могу работать в команде. Стараюсь всегда найти подход к
             каждому и создать благоприятную рабочую атмосферу. Наиболее важным аспектом в жизни считаю постоянное развитие и обучение.
           </p>
-          <a href="https://github.com/Alla-Katkova" className="about-me__github-link">
+          <a href="https://github.com/Alla-Katkova" className="about-me__github-link" target="_blank">
             Github
           </a>
         </div>

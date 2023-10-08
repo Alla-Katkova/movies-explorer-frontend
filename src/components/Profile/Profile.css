@@ -82,6 +82,8 @@
   color: #ee3465;
   font-weight: 500;
   margin-top: 16px;
+  text-decoration: none;
+  text-align: center;
 }
 
 .profile__error-message {

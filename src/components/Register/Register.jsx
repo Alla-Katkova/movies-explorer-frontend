@@ -36,7 +36,7 @@ export default function Register() {
           <button className="register__button">Зарегистрироваться</button>
           <div className="register__link-container">
             <span className="register__link-already-registered">Уже зарегистрированы?</span>
-            <a className="register__link-signin" href="/signup">
+            <a className="register__link-signin" href="/signin">
               Войти
             </a>
           </div>
