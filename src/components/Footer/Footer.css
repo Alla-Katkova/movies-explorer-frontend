@@ -2,6 +2,8 @@
   margin-top: 79px;
   margin-left: 71px;
   margin-right: 71px;
+  flex-shrink: 0;
+
 }
 
 .footer__title {

@@ -35,7 +35,6 @@
   border-right: none;
   border-left: none;
   display: flex;
-  flex-direction: column;
   padding: 0px;
   padding-bottom: 16px;
   padding-top: 17px;
@@ -50,7 +49,6 @@
   line-height: 13.31px;
   text-align: right;
   width: 381px;
-  position: absolute;
 }
 
 .profile__buttons-container {
