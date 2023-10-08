@@ -31,7 +31,7 @@
   line-height: 16px;
 }
 
-.navigation__item_type_account {
+.navigation__item-account {
   background-color: #313131;
   border-radius: 20px;
   border: none;
@@ -41,7 +41,7 @@
   margin-bottom: 21px; 
 }
 
-.navigation__item_type_account:hover {
+.navigation__item-account:hover {
   opacity: 80%;
   cursor: pointer;
 }

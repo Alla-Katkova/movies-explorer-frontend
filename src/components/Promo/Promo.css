@@ -1,6 +1,6 @@
-.promo__container {
+/* .promo__container {
   margin: auto;
-}
+} */
 
 .promo {
   height: 493px;
@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 160px 0 30px;
+  margin: auto;
 }
 
 .promo__title {

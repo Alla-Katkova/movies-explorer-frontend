@@ -9,13 +9,11 @@ export default function Main({}) {
   return (
     <>
       <Header />
-      <main className="promo__container">
-        <Promo />
-        <AboutProject />
-        <Techs />
-        <AboutMe />
-        <Footer />
-      </main>
+      <Promo />
+      <AboutProject />
+      <Techs />
+      <AboutMe />
+      <Footer />
     </>
   );
 }
