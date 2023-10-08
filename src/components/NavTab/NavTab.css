@@ -1,6 +1,7 @@
 .navbar {
   display: flex;
   gap: 10px;
+  padding-top: 151px;
 }
 
 .navbar__link-button {
