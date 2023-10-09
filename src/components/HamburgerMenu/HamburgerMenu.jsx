@@ -11,7 +11,7 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
   }
 
   return (
-    <div className={`hamburger-menu ${isOpened ? "" : "hamburger-menu_type_hidden"}`}>
+    <section className={`hamburger-menu ${isOpened ? "" : "hamburger-menu_type_hidden"}`}>
       <button type="button" className="hamburger-menu__close-button" onClick={hideMenu}>
         +
       </button>
@@ -35,12 +35,10 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
         </ul>
       </nav>
       <div className="hamburger-menu__item-container">
-        <button className="hamburger-menu__item hamburger-menu__item_type_account">
-          <NavLink to="/profile" className="hamburger-menu__link hamburger-menu__link_type_account">
-            Аккаунт
-          </NavLink>
-        </button>
+        <NavLink to="/profile" className="hamburger-menu__item-account">
+          Аккаунт
+        </NavLink>
       </div>
-    </div>
+    </section>
   );
 }

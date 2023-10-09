@@ -14,14 +14,14 @@ export default function AboutProject({}) {
         </div>
       </div>
       <div className="progressline">
-        <div className="progressline__backend">
+        <figure className="progressline__backend">
           <div className="progressline__line progressline__line_type_green">1 неделя</div>
-          <p className="progressline__text">Back-end</p>
-        </div>
-        <div className="progressline__frontend">
+          <figcaption className="progressline__text">Back-end</figcaption>
+        </figure>
+        <figure className="progressline__frontend">
           <div className="progressline__line progressline__line_type_grey">4 недели</div>
-          <p className="progressline__text">Front-end</p>
-        </div>
+          <figcaption className="progressline__text">Front-end</figcaption>
+        </figure>
       </div>
     </section>
   );

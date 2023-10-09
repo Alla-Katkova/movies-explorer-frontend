@@ -6,8 +6,8 @@ export default function Profile() {
     <>
       <Header />
       <main className="profile">
-        <div className="profile__container">
-          <h2 className="profile__title">{"Привет, Виталий!"}</h2>
+        <section className="profile__container">
+          <h1 className="profile__title">{"Привет, Виталий!"}</h1>
           <form className="profile__form">
             <fieldset className="profile__inputs profile__inputs-name">
               <label className="profile__label" for="name">
@@ -24,7 +24,7 @@ export default function Profile() {
               <span className="profile__error-message" id="email-error"></span>
             </fieldset>
             <div className="profile__buttons-container">
-              <button className="profile__button profile__button-edit" type="submit">
+              <button className="profile__button profile__button-edit" type="button">
                 Редактировать
               </button>
               <a href="/" className="profile__button profile__button-signout">
@@ -32,7 +32,7 @@ export default function Profile() {
               </a>
             </div>
           </form>
-        </div>
+        </section>
       </main>
     </>
   );

@@ -16,11 +16,9 @@ export default function DesktopMenu() {
           </NavLink>
         </li>
       </ul>
-      <button type="button" className="navigation__item-account">
-        <NavLink to="/profile" className="navigation__link navigation__link_type_account">
-          Аккаунт
-        </NavLink>
-      </button>
+      <NavLink to="/profile" className="navigation__account">
+        Аккаунт
+      </NavLink>
     </nav>
   );
 }

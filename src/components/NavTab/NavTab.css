@@ -2,6 +2,8 @@
   display: flex;
   gap: 10px;
   padding-top: 151px;
+  padding-left: 0px;
+  list-style-type: none;
 }
 
 .navbar__link-button {

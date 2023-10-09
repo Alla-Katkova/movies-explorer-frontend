@@ -25,20 +25,20 @@
   line-height: 18px;
 }
 
-.navigation__link_type_account {
+.navigation__account {
   font-size: 14px;
   font-weight: 500;
-  line-height: 16px;
-}
-
-.navigation__item-account {
   background-color: #313131;
   border-radius: 20px;
   border: none;
   width: 100px;
   height: 32px;
   margin-top: 21px;
-  margin-bottom: 21px; 
+  margin-bottom: 21px;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  line-height: 32px
 }
 
 .navigation__item-account:hover {

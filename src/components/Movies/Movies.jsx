@@ -13,7 +13,9 @@ export default function Movies(props) {
         <SearchForm />
         <MoviesCardList moviesData={fakeCards} />
         <div className="movies__add-button-container">
-          <button className="movies__add-button">Ещё</button>
+          <button type="button" className="movies__add-button">
+            Ещё
+          </button>
         </div>
       </main>
       <Footer />

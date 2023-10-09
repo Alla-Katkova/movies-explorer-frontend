@@ -38,7 +38,7 @@
 }
 
 
-@media (max-width: 320px) {
+@media (max-width: 424px) {
   .promo {
     height: 586px;
     max-width: calc(100% - 28px);
@@ -46,7 +46,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 424px) {
   .promo__title {
     font-size: 28px;
     line-height: 37px;

@@ -51,12 +51,16 @@
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 0%;
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .progressline__frontend {
   flex-grow: 8;
   flex-shrink: 1;
   flex-basis: 0%;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .progressline__line {
@@ -106,7 +110,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .about {
     padding-top: 70px;
     padding-right: 0px;
@@ -117,7 +121,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .about__container {
     padding-top: 60px;
     flex-direction: column;
@@ -126,7 +130,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .title {
     font-size: 18px;
     font-weight: 400;
@@ -135,32 +139,32 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .about__summary-title {
     font-size: 18px;
     line-height: 21.78px;
     margin-bottom: 17px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .about__summary-subtitle {
     font-size: 11px;
     line-height: 16px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .progressline {
     font-size: 11px;
     line-height: 13.31px;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .progressline__backend {
     flex: 1 1;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 539px) {
   .progressline__frontend {
     flex: 2 1;
   }

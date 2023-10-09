@@ -98,12 +98,12 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__container {
     flex-direction: column-reverse;
   }
 }
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me {
     padding-top: 70px;
     padding-left: 11px;
@@ -111,26 +111,27 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__container {
     padding-top: 58px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
 .about-me__avatar {
   height: 352px;
   width: 292px;
+  margin: auto;
 }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__container {
     gap: 0px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__name {
     font-size: 30px;
     line-height: 36.31px;
@@ -139,14 +140,14 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__status {
     font-size: 11px;
     line-height: 16px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 494px) {
   .about-me__description {
     font-size: 11px;
     line-height: 16px;

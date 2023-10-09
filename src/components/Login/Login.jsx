@@ -8,7 +8,7 @@ export default function Login() {
         <HomeButton />
       </div>
       <div className="login__container">
-        <h2 className="login__title">Рады видеть!</h2>
+        <h1 className="login__title">Рады видеть!</h1>
         <form className="login__form">
           <fieldset className="login__inputs">
             <label className="login__label">
@@ -26,7 +26,9 @@ export default function Login() {
           </fieldset>
         </form>
         <div className="login__button-common-container">
-          <button className="login__button">Войти</button>
+          <button type="submit" className="login__button">
+            Войти
+          </button>
           <div className="login__link-container">
             <span className="login__link-already-registered">Еще не зарегистрированы?</span>
             <a className="login__link-signin" href="/signup">

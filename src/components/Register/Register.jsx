@@ -8,7 +8,7 @@ export default function Register() {
         <HomeButton />
       </div>
       <div className="register__container">
-        <h2 className="register__title">Добро пожаловать!</h2>
+        <h1 className="register__title">Добро пожаловать!</h1>
         <form className="register__form">
           <fieldset className="register__inputs">
             <label className="register__label">
@@ -33,7 +33,9 @@ export default function Register() {
           </fieldset>
         </form>
         <div className="register__button-common-container">
-          <button className="register__button">Зарегистрироваться</button>
+          <button type="submit" className="register__button">
+            Зарегистрироваться
+          </button>
           <div className="register__link-container">
             <span className="register__link-already-registered">Уже зарегистрированы?</span>
             <a className="register__link-signin" href="/signin">
