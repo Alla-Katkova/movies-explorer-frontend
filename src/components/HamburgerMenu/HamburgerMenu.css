@@ -23,7 +23,7 @@
   }
 
   .hamburger-menu_type_hidden {
-    visibility: hidden;
+    display: none;
   }
 }
 
