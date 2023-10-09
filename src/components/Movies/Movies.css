@@ -31,6 +31,7 @@
 }
 @media (max-width: 320px) {
   .movies__add-button-container {
-    margin-bottom: 128px;
+    margin-top: 136px;
+    margin-bottom: 50px;
   }
 }

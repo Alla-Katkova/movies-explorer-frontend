@@ -100,7 +100,8 @@
 
 @media (max-width: 460px) {
   .movies-card__description {
-    padding: 0px;
+    padding-bottom: 0px;
+    padding-top: 12px;
     justify-content: start;
   }
 }
@@ -109,11 +110,23 @@
   .movies-card__title {
     font-size: 12px;
     line-height: 14.52px;
+    margin: 0px;
+    padding: 0px;
   }
 }
 
 @media (max-width: 460px) {
-.movies-card__preview-container {
-  width: 300px;
+  .movies-card__preview-container {
+    width: 300px;
+  }
 }
+
+@media (max-width: 460px) {
+  .movies-card__duration {
+    margin: 0px;
+    padding-bottom: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 5px;
+  }
 }

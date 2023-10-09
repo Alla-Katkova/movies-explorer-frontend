@@ -34,10 +34,13 @@
 
 @media (max-width: 460px) {
   .movies-list__cataloges {
-    grid-row-gap: 39px;
+    grid-row-gap: 33px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
     max-width: 320px;
     padding-top: 0px;
-    margin-top: 48px;
+    margin-top: 49px;
   }
 }
+
+
+
