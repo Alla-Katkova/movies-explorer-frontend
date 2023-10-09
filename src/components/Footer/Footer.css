@@ -1,5 +1,5 @@
 .footer {
-  margin-top: 79px;
+  margin-top: 82px;
   margin-left: 71px;
   margin-right: 71px;
   flex-shrink: 0;
@@ -20,7 +20,7 @@
 .footer__container {
   display: flex;
   justify-content: space-between;
-  padding-top: 20px;
+  padding-top: 18px;
   padding-bottom: 20px;
 }
 

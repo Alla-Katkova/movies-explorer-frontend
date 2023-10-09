@@ -51,16 +51,14 @@
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 0%;
-  margin-right: 0px;
-  margin-left: 0px;
+  margin: 0px;
 }
 
 .progressline__frontend {
   flex-grow: 8;
   flex-shrink: 1;
   flex-basis: 0%;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin: 0px;
 }
 
 .progressline__line {

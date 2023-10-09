@@ -27,16 +27,16 @@
   .movies-list__cataloges {
     grid-row-gap: 47px;
     grid-template-columns: repeat(auto-fit, minmax(339px, 339px));
-    margin: 0px;
+    margin: auto;
     
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 460px) {
   .movies-list__cataloges {
     grid-row-gap: 39px;
     grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
-    width: 81.5vw;
+    max-width: 320px;
     padding-top: 0px;
     margin-top: 48px;
   }

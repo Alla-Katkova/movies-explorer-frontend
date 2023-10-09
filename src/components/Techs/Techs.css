@@ -1,7 +1,7 @@
 .techs {
   background-color: #272727;
-  padding-top: 100px;
-  padding-bottom: 29px;
+  padding-top: 102px;
+  padding-bottom: 31px;
   padding-left: 70px;
   padding-right: 70px;
 }
@@ -141,5 +141,9 @@
 @media (max-width: 405px) {
   .techs__title {
     border-bottom: 1px solid #000000;
+    font-size: 18px;
+    line-height: 21.78px;
+    padding-bottom: 27px;
+
   }
 }

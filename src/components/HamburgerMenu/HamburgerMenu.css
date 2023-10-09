@@ -18,8 +18,8 @@
     height: 100vh;
     color: #ffffff;
     z-index: 2;
-    /* align-items: stretch;
-    justify-content: space-between; */
+    align-items: stretch;
+    justify-content: space-between;
   }
 
   .hamburger-menu_type_hidden {

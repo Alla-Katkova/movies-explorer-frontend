@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   background-color: #202020;
-  padding-top: 112px;
+  padding-top: 110px;
   padding-left: 70px;
   padding-right: 70px;
 }
@@ -66,7 +66,7 @@
 
 @media (max-width: 768px) {
   .about-me {
-    padding-top: 91px;
+    padding-top: 92px;
     padding-left: 50px;
     padding-right: 50px;
   }
@@ -77,7 +77,7 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 21.78px;
-    padding-bottom: 28px;
+    padding-bottom: 22px;
   }
 }
 

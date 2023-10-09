@@ -91,28 +91,28 @@
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .movies-card__preview {
     width: 300px;
     height: 168px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .movies-card__description {
     padding: 0px;
     justify-content: start;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .movies-card__title {
     font-size: 12px;
     line-height: 14.52px;
   }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 460px) {
 .movies-card__preview-container {
   width: 300px;
 }
