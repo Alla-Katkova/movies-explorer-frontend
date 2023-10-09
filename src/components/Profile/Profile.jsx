@@ -10,14 +10,14 @@ export default function Profile() {
           <h1 className="profile__title">{"Привет, Виталий!"}</h1>
           <form className="profile__form">
             <fieldset className="profile__inputs profile__inputs-name">
-              <label className="profile__label" for="name">
+              <label className="profile__label" htmlFor="name">
                 Имя
               </label>
               <input className="profile__input" name="name" id="name" type="text" minLength={2} maxLength={15} required />
               <span className="profile__error-message" id="name-error"></span>
             </fieldset>
             <fieldset className="profile__inputs profile__inputs-email">
-              <label className="profile__label" for="email">
+              <label className="profile__label" htmlFor="email">
                 E-mail
               </label>
               <input className="profile__input" name="email" id="email" type="email" />

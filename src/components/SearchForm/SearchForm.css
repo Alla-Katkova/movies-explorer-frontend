@@ -60,6 +60,10 @@
   column-gap: 14px;
 }
 
+.filter:hover {
+  cursor: pointer;
+}
+
 .filter__checkbox {
   align-self: center;
   position: relative;
