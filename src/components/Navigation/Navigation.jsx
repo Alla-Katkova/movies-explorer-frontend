@@ -2,7 +2,6 @@ import Hamburger from "../Hamburger/Hamburger";
 import { useState } from "react";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import DesktopMenu from "../DesktopMenu/DesktopMenu";
-import "./Navigation.css";
 import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 
 export default function Navigation() {
