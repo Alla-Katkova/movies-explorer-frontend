@@ -13,7 +13,7 @@
 .register__container {
   display: flex;
   flex-direction: column;
-  max-width: 396px;
+  /* max-width: 396px; */
   height: 100%;
   padding-top: 40px;
 }
@@ -25,13 +25,13 @@
 }
 .register__form {
   margin-top: 35px;
-  width: 381px;
+  width: 396px;
 }
 .register__inputs {
   border: none;
   padding: 0px;
   margin: 0px;
-  width: 381px;
+  width: 100%;
 }
 
 .register__label {

@@ -12,7 +12,6 @@
 .login__container {
   display: flex;
   flex-direction: column;
-  max-width: 396px;
   height: 100%;
   padding-top: 40px;
 }
@@ -24,7 +23,7 @@
 }
 .login__form {
   margin-top: 35px;
-  width: 381px;
+  width: 396px;
 }
 .login__inputs {
   border: none;
