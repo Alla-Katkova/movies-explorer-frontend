@@ -45,11 +45,10 @@
 }
 
 @media (max-width: 768px) {
-.not-found__container {
-  margin-top: 408px;
+  .not-found__container {
+    margin-top: 408px;
+  }
 }
-}
-
 
 @media (max-width: 320px) {
   .not-found__title {
@@ -79,4 +78,4 @@
     margin-top: 330px;
     margin-bottom: 273px;
   }
-  }
+}

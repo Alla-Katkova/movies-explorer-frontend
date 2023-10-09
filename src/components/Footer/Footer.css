@@ -3,7 +3,6 @@
   margin-left: 71px;
   margin-right: 71px;
   flex-shrink: 0;
-
 }
 
 .footer__title {
@@ -53,7 +52,7 @@
 
 .footer__item-link:hover {
   opacity: 70%;
-  cursor: pointer
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {

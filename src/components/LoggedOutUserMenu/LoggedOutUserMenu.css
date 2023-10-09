@@ -71,8 +71,8 @@
 }
 
 @media screen and (max-width: 320px) {
-.logout {
-  padding-top: 18px;
-  padding-bottom: 18px;
-} 
+  .logout {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
 }

@@ -15,7 +15,7 @@
   justify-content: center;
   background-color: #303030;
   border-radius: 10px;
-  color: #FFFFFF;
+  color: #ffffff;
   text-decoration: none;
   font-size: 12px;
   font-weight: 500;
@@ -29,11 +29,10 @@
 }
 
 @media (max-width: 768px) {
-.navbar {
-  padding-top: 0px;;
-  margin-top: 213px;
-
-}
+  .navbar {
+    padding-top: 0px;
+    margin-top: 213px;
+  }
 }
 
 @media (max-width: 320px) {

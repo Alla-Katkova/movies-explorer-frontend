@@ -28,7 +28,6 @@
     grid-row-gap: 47px;
     grid-template-columns: repeat(auto-fit, minmax(339px, 339px));
     margin: auto;
-    
   }
 }
 
@@ -41,6 +40,3 @@
     margin-top: 49px;
   }
 }
-
-
-

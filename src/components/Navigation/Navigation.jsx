@@ -1,4 +1,3 @@
-import "./Navigation.css";
 import Hamburger from "../Hamburger/Hamburger";
 import { useState } from "react";
 import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
