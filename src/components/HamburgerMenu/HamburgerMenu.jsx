@@ -12,9 +12,9 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
 
   return (
     <section className={`hamburger-menu ${isOpened ? "" : "hamburger-menu_type_hidden"}`}>
-      <button type="button" className="hamburger-menu__close-button" onClick={hideMenu}>
-        +
-      </button>
+      <div className="hamburger-menu__container-button">
+        <button type="button" className="hamburger-menu__close-button" onClick={hideMenu}></button>
+      </div>
       <nav className={`hamburger-menu__nav`}>
         <ul className="hamburger-menu__list">
           <li className="hamburger-menu__item">
@@ -24,12 +24,12 @@ export default function HamburgerMenu({ isOpened, setIsOpened }) {
           </li>
           <li className="hamburger-menu__item">
             <NavLink to="/movies" className="hamburger-menu__link">
-              Фильмы в бургере
+              Фильмы
             </NavLink>
           </li>
           <li className="hamburger-menu__item">
             <NavLink to="/saved-movies" className="hamburger-menu__link">
-              Сохранённые фильмы в бургере
+              Сохранённые фильмы
             </NavLink>
           </li>
         </ul>
