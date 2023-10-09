@@ -5,7 +5,7 @@
   padding-bottom: 110px;
 }
 
-.title {
+.about__title {
   border-bottom: 1px solid #dadada;
   font-size: 22px;
   font-weight: 400;
@@ -131,7 +131,7 @@
 }
 
 @media (max-width: 539px) {
-  .title {
+  .about__title  {
     font-size: 18px;
     font-weight: 400;
     line-height: 21.78px;

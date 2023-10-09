@@ -13,7 +13,7 @@ export default function Profile() {
               <label className="profile__label" for="name">
                 Имя
               </label>
-              <input className="profile__input" name="name" id="name" type="text" />
+              <input className="profile__input" name="name" id="name" type="text" minLength={2} maxLength={15} required />
               <span className="profile__error-message" id="name-error"></span>
             </fieldset>
             <fieldset className="profile__inputs profile__inputs-email">

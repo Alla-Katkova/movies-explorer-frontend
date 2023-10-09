@@ -20,7 +20,7 @@ export default function Login() {
           <fieldset className="login__inputs">
             <label className="login__label">
               Пароль
-              <input className="login__input" name="password" id="password" type="text" />
+              <input className="login__input" name="password" id="password" type="text" minLength={6} maxLength={15} required />
             </label>
             <span className="login__error-message" id="password-error"></span>
           </fieldset>
