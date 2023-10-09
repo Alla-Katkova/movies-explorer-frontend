@@ -90,6 +90,8 @@
 @media (max-width: 320px) {
   .portfolio__title {
     font-size: 14px;
+    margin-bottom: 43px;
+
   }
 }
 
@@ -104,6 +106,8 @@
 @media (max-width: 320px) {
   .portfolio__item {
     border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 18px;
+
   }
 }
 
@@ -116,6 +120,6 @@
 
 @media (max-width: 320px) {
   .portfolio__list {
-    gap: 25px;
+    gap: 21px;
   }
 }

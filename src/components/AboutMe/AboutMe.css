@@ -132,8 +132,14 @@
 }
 
 @media (max-width: 494px) {
+.about-me__title {
+  padding-bottom: 29px;
+}
+}
+
+@media (max-width: 494px) {
   .about-me__container {
-    padding-top: 58px;
+    padding-top: 60px;
   }
 }
 
@@ -155,8 +161,8 @@
   .about-me__name {
     font-size: 30px;
     line-height: 36.31px;
-    margin-top: 40px;
     margin-bottom: 22px;
+    margin-top: 37px;
   }
 }
 

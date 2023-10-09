@@ -27,7 +27,7 @@
   .promo {
     height: 834px;
     max-width: calc(100% - 40px);
-    padding: 320px 24px 0px;
+    padding: 318px 24px 0px;
     margin-left: 20px;
     margin-right: 20px;
   }
@@ -46,7 +46,6 @@
     max-width: calc(100% - 28px);
     padding: 220px 10px 18px;
     margin-left: 14px;
-    margin-right: 14px;
   }
 }
 

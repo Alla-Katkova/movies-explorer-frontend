@@ -30,7 +30,9 @@
 
 @media (max-width: 768px) {
 .navbar {
-  padding-top: 312px;;
+  padding-top: 0px;;
+  margin-top: 213px;
+
 }
 }
 
@@ -41,9 +43,3 @@
     font-size: 10px;
   }
 }
-
-@media (max-width: 768px) {
-  .navbar {
-    padding-top: 210px;
-    gap: 6px;
-}}
