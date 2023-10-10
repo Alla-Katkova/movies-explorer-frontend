@@ -13,14 +13,14 @@ export default function Profile() {
               <label className="profile__label" htmlFor="name">
                 Имя
               </label>
-              <input className="profile__input" name="name" id="name" type="text" minLength={2} maxLength={15} required />
+              <input className="profile__input" name="name" id="name" type="text" minLength={2} maxLength={15} required placeholder="Имя" />
               <span className="profile__error-message" id="name-error"></span>
             </fieldset>
             <fieldset className="profile__inputs profile__inputs-email">
               <label className="profile__label" htmlFor="email">
                 E-mail
               </label>
-              <input className="profile__input" name="email" id="email" type="email" />
+              <input className="profile__input" name="email" id="email" type="email" placeholder="Email" />
               <span className="profile__error-message" id="email-error"></span>
             </fieldset>
             <div className="profile__buttons-container">

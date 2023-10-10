@@ -38,6 +38,7 @@
   padding-bottom: 16px;
   padding-left: 0px;
   padding-top: 20px;
+  padding-right: 0px;
 }
 
 .profile__input {
@@ -106,16 +107,12 @@
 
 @media (max-width: 768px) {
   .profile__buttons-container {
-    padding-top: 203px;
+    /* padding-top: 203px; */
+    padding-top: 191px;
     padding-bottom: 269px;
   }
 }
 
-@media (max-width: 768px) {
-  .profile__form {
-    margin-top: 65px;
-  }
-}
 
 @media (max-width: 440px) {
   .profile__container {
