@@ -51,6 +51,8 @@
   justify-content: space-between;
   padding-left: 15px;
   padding-right: 15px;
+  margin-top: 6px;
+
 }
 
 .movies-card__title {
@@ -59,6 +61,7 @@
   line-height: 15.73px;
   width: 250px;
   margin-bottom: 0px;
+  margin-top: 0px;
 }
 .movies-card__duration {
   font-size: 11px;
@@ -73,7 +76,8 @@
   padding-left: 8px;
   padding-top: 8px;
   text-align: center;
-  margin-top: 5px;
+  margin-top: 0px;
+
 }
 
 @media (max-width: 768px) {
@@ -101,8 +105,9 @@
 @media (max-width: 460px) {
   .movies-card__description {
     padding-bottom: 0px;
-    padding-top: 12px;
     justify-content: start;
+    padding-top: 0px;
+    margin-top: 11px;
   }
 }
 

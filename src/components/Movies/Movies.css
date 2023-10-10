@@ -1,9 +1,9 @@
 .movies__add-button-container {
   display: flex;
   justify-content: center;
-  margin-top: 59px;
   margin-bottom: 79px;
-  padding-bottom: 80px;
+  margin-top: 72px;
+  padding-bottom: 0px;
 }
 
 .movies__add-button {
@@ -23,6 +23,12 @@
   opacity: 80%;
   cursor: pointer;
 }
+@media (max-width: 768px) {
+  .movies__add-button-container {
+    margin-top: 58px;
+    margin-bottom: 113px;
+  }
+}
 
 @media (max-width: 320px) {
   .movies__add-button {
@@ -31,7 +37,7 @@
 }
 @media (max-width: 320px) {
   .movies__add-button-container {
-    margin-top: 136px;
-    margin-bottom: 50px;
+    margin-top: 62px;
+    margin-bottom: 130px;
   }
 }
