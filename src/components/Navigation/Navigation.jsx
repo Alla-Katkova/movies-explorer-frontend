@@ -8,13 +8,13 @@ export default function Navigation() {
   const loggedIn = true;
   const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
   const onClickBurger = () => {
-    if (isHamburgerMenuOpened) {
-      setIsHamburgerMenuOpened(false);
-    } else {
-      setIsHamburgerMenuOpened(true);
-    }
+    setIsHamburgerMenuOpened(true);
   };
-
+  if (isHamburgerMenuOpened) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "unset";
+  }
   const navigationStateClass = isHamburgerMenuOpened ? "navigation_state_on" : "navigation_state_off";
   return (
     <>

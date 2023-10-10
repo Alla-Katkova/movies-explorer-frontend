@@ -3,11 +3,8 @@ import "./HamburgerMenu.css";
 
 export default function HamburgerMenu({ isOpened, setIsOpened }) {
   function hideMenu() {
-    if (isOpened) {
-      setIsOpened(false);
-    } else {
-      setIsOpened(true);
-    }
+    setIsOpened(false);
+    document.body.style.overflow = "unset";
   }
 
   return (
