@@ -31,6 +31,11 @@
   margin-right: 10px;
 }
 
+.search__input:focus {
+  outline: 2px solid #3DDC84;
+  outline-offset: 3px;
+}
+
 .search__button {
   background-color: #4285f4;
   width: 44px;

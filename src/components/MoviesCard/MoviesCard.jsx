@@ -39,7 +39,7 @@ export default function MoviesCard({ movie, isSaved }) {
             ></button>
           )}
 
-          <img src={movie.src} className="movies-card__preview" alt="Фильм превью" />
+          <img src={movie.src} className="movies-card__preview" alt={movie.name} />
         </div>
         <div className="movies-card__description">
           <h2 className="movies-card__title">{movie.title}</h2>
