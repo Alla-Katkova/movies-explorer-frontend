@@ -67,6 +67,7 @@
 
 .filter:hover {
   cursor: pointer;
+  opacity: 0.8;
 }
 
 .filter__checkbox {

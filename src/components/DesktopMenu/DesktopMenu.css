@@ -26,6 +26,11 @@
   line-height: 18px;
 }
 
+.navigation__link:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .navigation__account {
   font-size: 14px;
   font-weight: 500;
@@ -42,8 +47,13 @@
   line-height: 32px;
 }
 
+.navigation__account:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
 .navigation__item-account:hover {
-  opacity: 80%;
+  opacity: 0.7;
   cursor: pointer;
 }
 

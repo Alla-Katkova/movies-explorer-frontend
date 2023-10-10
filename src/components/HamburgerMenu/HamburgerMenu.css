@@ -35,6 +35,10 @@
     line-height: 21.78px;
     font-weight: 500;
   }
+  .hamburger-menu__link:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -67,6 +71,10 @@
     background-position: center;
     width: 22px;
     height: 22px;
+  }
+  .hamburger-menu__close-button:hover {
+    cursor: pointer;
+    opacity: 0.5;
   }
 }
 

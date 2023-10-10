@@ -13,16 +13,16 @@ export default function AboutProject({}) {
           <p className="about__summary-subtitle">У каждого этапа был мягкий и жёсткий дедлайн, которые нужно было соблюдать, чтобы успешно защититься.</p>
         </div>
       </div>
-      <div className="progressline">
-        <figure className="progressline__backend">
+      <section className="progressline">
+        <article className="progressline__backend">
           <div className="progressline__line progressline__line_type_green">1 неделя</div>
-          <figcaption className="progressline__text">Back-end</figcaption>
-        </figure>
-        <figure className="progressline__frontend">
+          <span className="progressline__text">Back-end</span>
+        </article>
+        <article className="progressline__frontend">
           <div className="progressline__line progressline__line_type_grey">4 недели</div>
-          <figcaption className="progressline__text">Front-end</figcaption>
-        </figure>
-      </div>
+          <span className="progressline__text">Front-end</span>
+        </article>
+      </section>
     </section>
   );
 }
