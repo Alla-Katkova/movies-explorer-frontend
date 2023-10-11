@@ -1,0 +1,87 @@
+.logout {
+  padding-top: 21px;
+  padding-bottom: 21px;
+  display: flex;
+  justify-content: end;
+}
+
+.logout__button-registration {
+  background-color: #202020;
+  border: none;
+  cursor: pointer;
+  width: 77px;
+  height: 16px;
+  margin-right: 30px;
+  padding-top: 6px;
+}
+
+.logout__button-signin {
+  background-color: #3ddc84;
+  border-radius: 3px;
+  border: none;
+  width: 76px;
+  height: 32px;
+}
+.logout__button-signin:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.logout__link-registration {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.logout__link-registration:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.logout__link-signin {
+  color: #000000;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@media screen and (max-width: 320px) {
+  .logout__link-registration {
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .logout__link-signin {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .logout {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .logout__button-signin {
+    padding-bottom: 5px;
+    width: 54px;
+    margin-left: 10px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .logout__button-registration {
+    padding-right: 0px;
+    margin-right: 0px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .logout {
+    padding-top: 18px;
+    padding-bottom: 18px;
+  }
+}
