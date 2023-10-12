@@ -1,7 +1,14 @@
 import HomeButton from "../HomeButton/HomeButton.jsx";
 import "./Register.css";
+import { Navigate, useLocation } from "react-router-dom";
 
-export default function Register() {
+export default function Register({ isLoggedIn }) {
+  let location = useLocation();
+
+  if (isLoggedIn) {
+    return <Navigate to="/" state={{ from: location }} replace />;
+  }
+
   return (
     <main className="register">
       <div className="register__logo">

@@ -4,6 +4,7 @@ function tranformSavedMoviesForUi(movies) {
     id: movie.movieId,
   }));
 }
+
 /**
  * Fetches movies from the specified API.
  *
@@ -14,7 +15,7 @@ export function fetchSavedMovies() {
   const url = "https://api.movies.explorer.katko.nomoredomainsicu.ru/movies";
   const headers = {
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTI2Yjg1YWY5MDM2NTVjNDJmMDM3ZjgiLCJpYXQiOjE2OTcwNDQ2MzAsImV4cCI6MTY5NzY0OTQzMH0.XNaFZjm62VqDbSK8NAWv2gPgWFaLcGyPVLP5DvMhFU8",
+      "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTI2Yjg1YWY5MDM2NTVjNDJmMDM3ZjgiLCJpYXQiOjE2OTcxMDgxNzEsImV4cCI6MTY5NzcxMjk3MX0.ucJDk0a3RiffqdCL-k7j6uxVxFsniqVJnq1LwhTX2WI",
   };
 
   return new Promise((resolve, reject) => {
@@ -22,6 +23,12 @@ export function fetchSavedMovies() {
       headers: headers,
     })
       .then((response) => {
+        if (response.status === 502) {
+          throw new Error("Bad Gateway (502)");
+        }
+        if (response.status === 401) {
+          throw new Error("Unauthorized (401)");
+        }
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }

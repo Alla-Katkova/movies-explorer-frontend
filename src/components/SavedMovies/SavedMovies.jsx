@@ -5,10 +5,10 @@ import "./SavedMovies.css";
 import Footer from "../Footer/Footer";
 import { fakeCards } from "../../utils/constants";
 
-export default function SavedMovies(props) {
+export default function SavedMovies({}) {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="saved-movies">
         <article className="saved-movies__container">
           <SearchForm />

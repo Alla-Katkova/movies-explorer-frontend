@@ -18,37 +18,33 @@ function addSavedFlag(movies, savedMovies) {
   });
 }
 
-export default function Movies(props) {
+export default function Movies() {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
     Promise.all([fetchMovies(), fetchSavedMovies()])
       .then(([moviesFromServer, savedMoviesFromServer]) => {
         setMovies(addSavedFlag(moviesFromServer, savedMoviesFromServer));
-        setSavedMovies(savedMoviesFromServer);
         setIsLoading(false);
+        setError(null);
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setError(`На сервере произошла ошибка.`); // Set specific error message
+        setIsLoading(false);
+        setMovies([]);
       });
   }, []);
 
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="movies">
         <SearchForm />
-        <details>
-          <summary>Movies</summary>
-          <pre>{JSON.stringify(movies, null, 2)}</pre>
-        </details>
-        <details>
-          <summary>Saved Movies</summary>
-          <pre>{JSON.stringify(savedMovies, null, 2)}</pre>
-        </details>
+        <div className={"movies__error-message"}>{error}</div>
         {isLoading ? <Preloader /> : null}
         <MoviesCardList moviesData={movies} />
         <div className="movies__add-button-container">

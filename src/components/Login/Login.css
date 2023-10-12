@@ -58,6 +58,12 @@
 .login__input:focus {
   outline: 2px solid #3DDC84;
   outline-offset: 3px;
+  color: #ffffff;
+}
+
+.login__input-error {
+  outline-offset: 3px;
+  color: #ee3465;
 }
 
 .login__error-message {
@@ -73,6 +79,7 @@
   margin-bottom: 70px;
 }
 
+
 .login__button {
   margin: 0px;
   padding: 0px;
@@ -86,6 +93,12 @@
   border-radius: 3px;
   border: none;
 }
+
+.login__button_type_disabled {
+  color:#C2C2C2;
+  background-color: rgba(248, 248, 248, 0.16);
+}
+
 
 .login__button:hover {
   opacity: 80%;

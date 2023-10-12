@@ -4,7 +4,7 @@ import "./Profile.css";
 export default function Profile() {
   return (
     <>
-      <Header />
+      <Header isLoggedIn={true} />
       <main className="profile">
         <section className="profile__container">
           <h1 className="profile__title">{"Привет, Виталий!"}</h1>
