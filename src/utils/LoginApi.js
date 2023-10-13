@@ -28,7 +28,3 @@ export function login(email, password) {
       throw new Error(`Error logging in: ${error.message}`);
     });
 }
-
-function logout() {
-  localStorage.clear();
-}

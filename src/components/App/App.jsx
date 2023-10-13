@@ -8,6 +8,7 @@ import Register from "../Register/Register.jsx";
 import Movies from "../Movies/Movies.jsx";
 import NotFound from "../NotFound/NotFound";
 import { login } from "../../utils/LoginApi";
+import { logout, signup } from "../../utils/MainApi";
 import { useState } from "react";
 import { initCache, initJwt, isJwtTokenExist } from "../../utils/localStorage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -24,9 +25,19 @@ function App() {
     });
   }
 
+  function handleLogout() {
+    logout().then(() => setIsLoggedIn(false));
+  }
+
+  function handleRegister(userDetails) {
+    return signup(userDetails).then(() => {
+      return handleLogin({ email: userDetails.email, password: userDetails.password });
+    });
+  }
+
   return (
     <div className="app">
-      <pre>{JSON.stringify(isLoggedIn)}</pre>
+      <pre>Is logged in: {JSON.stringify(isLoggedIn)}</pre>
       <Routes>
         <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
         <Route
@@ -49,13 +60,13 @@ function App() {
           path="/profile"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <Profile />
+              <Profile handleLogout={handleLogout} />
             </ProtectedRoute>
           }
         />
 
         <Route path="/signin" element={<Login handleLogin={handleLogin} isLoggedIn={isLoggedIn} />} />
-        <Route path="/signup" element={<Register isLoggedIn={isLoggedIn} />} />
+        <Route path="/signup" element={<Register handleRegister={handleRegister} isLoggedIn={isLoggedIn} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

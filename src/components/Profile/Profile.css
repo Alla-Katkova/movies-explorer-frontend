@@ -34,11 +34,11 @@
   border-right: none;
   border-left: none;
   display: flex;
-  margin: 0px;
+  margin: 0;
   padding-bottom: 16px;
-  padding-left: 0px;
+  padding-left: 0;
   padding-top: 20px;
-  padding-right: 0px;
+  padding-right: 0;
 }
 
 .profile__input {
@@ -79,7 +79,7 @@
   line-height: 15.73px;
 }
 
-.profile__button:hover {
+.profile__button:not(:disabled):hover {
   opacity: 70%;
   cursor: pointer;
 }
@@ -97,6 +97,12 @@
   font-weight: 400;
   line-height: 12.1px;
   color: #ee3465;
+}
+
+.profile__error-message-type-server {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 @media (max-width: 768px) {

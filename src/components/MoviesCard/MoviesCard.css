@@ -135,3 +135,20 @@
     padding-top: 5px;
   }
 }
+
+/*сокрытие кнопки сохранить на экранах*/
+.movies-card:hover .movies-card__button_type_unsaved {
+  opacity: 1;
+}
+
+.movies-card__button_type_unsaved {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+/*на мобильных кнопка всегда видна*/
+@media (max-width: 768px) {
+  .movies-card__button_type_unsaved {
+    opacity: 1;
+  }
+}

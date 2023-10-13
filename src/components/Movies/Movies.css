@@ -1,9 +1,12 @@
+.movies__no-results {
+  text-align: center;
+}
 .movies__add-button-container {
   display: flex;
   justify-content: center;
   margin-bottom: 79px;
   margin-top: 72px;
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .movies__add-button {
@@ -14,7 +17,6 @@
   width: 320px;
   height: 36px;
   color: #ffffff;
-  border: none;
   border-radius: 6px;
   border: 1px solid #424242;
   background-color: #202020;
