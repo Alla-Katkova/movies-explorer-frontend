@@ -8,6 +8,8 @@ import { usernamePattern } from "../../utils/regex";
 export default function Register({ isLoggedIn, handleRegister }) {
   const { values, errors, isValid, handleChange } = useValidationForFrom();
   const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   let location = useLocation();
 
   if (isLoggedIn) {
@@ -22,9 +24,12 @@ export default function Register({ isLoggedIn, handleRegister }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    handleRegister(values).catch((error) => {
-      setServerError(error);
-    });
+    setIsLoading(true);
+    handleRegister(values)
+      .catch((error) => {
+        setServerError(error);
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleInputChange(e) {
@@ -58,6 +63,7 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 pattern={usernamePattern}
                 placeholder="Имя"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
             </label>
             <span
@@ -78,6 +84,7 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 required
                 placeholder="Email"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
             </label>
             <span
@@ -100,6 +107,7 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 required
                 placeholder="Пароль"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
             </label>
             <span
@@ -118,8 +126,8 @@ export default function Register({ isLoggedIn, handleRegister }) {
             </span>
             <button
               type="submit"
-              disabled={!isValid}
-              className={!isValid ? "register__button register__button_type_disabled" : "register__button"}
+              disabled={!isValid || isLoading}
+              className="register__button"
             >
               Зарегистрироваться
             </button>

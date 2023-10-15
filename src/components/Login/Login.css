@@ -99,7 +99,6 @@
     font-weight: 500;
     line-height: 16.94px;
     height: 45px;
-    /* width: 396px; */
     border-radius: 3px;
     border: none;
 }
@@ -109,7 +108,7 @@
     cursor: pointer;
 }
 
-.login__button_type_disabled {
+.login__button:disabled {
     color: #C2C2C2;
     background-color: rgba(248, 248, 248, 0.16);
 }

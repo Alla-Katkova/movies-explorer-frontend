@@ -7,6 +7,7 @@ import { useState } from "react";
 export default function Login({ handleLogin, isLoggedIn }) {
   const { values, errors, isValid, handleChange } = useValidationForFrom();
   const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   let location = useLocation();
 
   if (isLoggedIn) {
@@ -20,12 +21,13 @@ export default function Login({ handleLogin, isLoggedIn }) {
   }
 
   function handleSubmit(e) {
+    setIsLoading(true);
     e.preventDefault();
     handleLogin(values)
-      .then(() => {})
       .catch((err) => {
         setServerError(err);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }
 
   function handleInputChange(e) {
@@ -56,6 +58,7 @@ export default function Login({ handleLogin, isLoggedIn }) {
                 type="text"
                 placeholder="Email"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
             </label>
             <span
@@ -78,6 +81,7 @@ export default function Login({ handleLogin, isLoggedIn }) {
                 required
                 placeholder="Пароль"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
             </label>
             <span
@@ -96,8 +100,8 @@ export default function Login({ handleLogin, isLoggedIn }) {
             </span>
             <button
               type="submit"
-              disabled={!isValid}
-              className={!isValid ? "login__button login__button_type_disabled" : "login__button"}
+              disabled={!isValid || isLoading}
+              className="login__button"
             >
               Войти
             </button>

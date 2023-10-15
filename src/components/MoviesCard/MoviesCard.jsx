@@ -1,7 +1,6 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 import React from "react";
-import { JSONDebug } from "../../utils/debugUtils";
 
 function formatDuration(duration) {
   const hours = Math.trunc(duration / 60);
@@ -19,10 +18,6 @@ export default function MoviesCard({ movie, onSaveClick, onDeleteClick }) {
 
   return (
     <li className="movies-card">
-      <JSONDebug
-        label={"movie"}
-        variable={movie}
-      />
       <article className="movies-card__item">
         <div className="movies-card__preview-container">
           {location.pathname === "/movies" &&
@@ -57,12 +52,12 @@ export default function MoviesCard({ movie, onSaveClick, onDeleteClick }) {
             <img
               src={movie.image}
               className="movies-card__preview"
-              alt={movie.title}
+              alt={movie.nameRU}
             />
           </a>
         </div>
         <div className="movies-card__description">
-          <h2 className="movies-card__title">{movie.title}</h2>
+          <h2 className="movies-card__title">{movie.nameRU}</h2>
           <p className="movies-card__duration">{formatDuration(movie.duration)}</p>
         </div>
       </article>

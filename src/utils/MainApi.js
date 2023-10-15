@@ -85,7 +85,6 @@ export function getUserDetails() {
   }).then(checkResponse);
 }
 
-// TODO исправить остальные функции по образцу этой
 export function editUserDetails(updatedUserDetails) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "PATCH",
@@ -106,7 +105,7 @@ export function editUserDetails(updatedUserDetails) {
     });
 }
 
-function tranformSavedMoviesForUi(movies) {
+export function tranformSavedMoviesForUi(movies) {
   return movies.map((movie) => ({
     ...movie,
     id: movie.movieId,
@@ -122,10 +121,9 @@ export function fetchSavedMovies() {
     },
   })
     .then(checkResponse)
-    .then((data) => tranformSavedMoviesForUi(data))
     .catch((err) => {
       console.error("Error fetching saved movies:", err.message);
-      throw err; // re-throwing the error to be caught by callers if necessary
+      throw err;
     });
 }
 

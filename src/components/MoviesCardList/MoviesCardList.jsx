@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard.jsx";
 import React, { useEffect, useState } from "react";
-import { JSONDebug } from "../../utils/debugUtils";
+import { useLocation } from "react-router-dom";
 
 const DEVICE_PARAMS = {
   desktop: {
@@ -40,25 +40,34 @@ function debounce(func, wait) {
   };
 }
 
-export default function MoviesCardList({ moviesData, onDeleteClick, onSaveClick }) {
+export default function MoviesCardList({ moviesData, onDeleteClick, onSaveClick, keyProperty, resetList }) {
   // moviesData должна быть массивом, не null!
-
-  const [showMovieList, setShowMovieList] = useState([]);
   const [cardsConfig, setCardsConfig] = useState({ total: 12, more: 3 });
+  const [cardsToShow, setCardsToShow] = useState(cardsConfig.total);
+
+  const location = useLocation();
+
+  function handleMoreMovies() {
+    setCardsToShow((prev) => prev + cardsConfig.more);
+  }
+
+  useEffect(() => {
+    console.log("useEffect");
+    updateScreenConfig();
+  }, [resetList]);
 
   const updateScreenConfig = () => {
     const width = window.innerWidth;
     let newConfig;
-    if (width > DEVICE_PARAMS.desktop.width) {
+    if (width >= DEVICE_PARAMS.desktop.width) {
       newConfig = DEVICE_PARAMS.desktop.cards;
-    } else if (width <= DEVICE_PARAMS.desktop.width && width > DEVICE_PARAMS.tablet.width) {
+    } else if (width < DEVICE_PARAMS.desktop.width && width > DEVICE_PARAMS.tablet.width) {
       newConfig = DEVICE_PARAMS.tablet.cards;
     } else {
       newConfig = DEVICE_PARAMS.mobile.cards;
     }
     setCardsConfig(newConfig);
-    const visibleCards = moviesData.slice(0, newConfig.total);
-    setShowMovieList(visibleCards);
+    setCardsToShow(newConfig.total);
   };
 
   const debouncedHandleResize = debounce(updateScreenConfig, 500);
@@ -67,41 +76,30 @@ export default function MoviesCardList({ moviesData, onDeleteClick, onSaveClick 
     console.log("effect is running");
     window.addEventListener("resize", debouncedHandleResize);
 
-    updateScreenConfig(); // initial call to set correct values based on screen size
+    updateScreenConfig();
 
     return () => {
       window.removeEventListener("resize", debouncedHandleResize);
     };
-  }, [moviesData]);
+  }, []); // пустой список зависимостей - вызывается единожды
 
-  function handleMoreMovies() {
-    const newTotal = showMovieList.length + cardsConfig.more;
-    const additionalMovies = moviesData.slice(showMovieList.length, newTotal);
-    console.log("setting new value", [...showMovieList, ...additionalMovies]);
-    setShowMovieList((prevMovies) => [...prevMovies, ...additionalMovies]);
-  }
-
+  const displayedMovies = location.pathname === "/movies" ? moviesData.slice(0, cardsToShow) : moviesData;
+  const isMoreFeatureActive = Boolean(location.pathname === "/movies");
   return (
     <>
-      <JSONDebug
-        variable={moviesData}
-        label={"moviesData in cardlist (uncut)"}
-      >
-        {moviesData.length}
-      </JSONDebug>
       <section className="movies-list">
         <ul className="movies-list__cataloges">
-          {showMovieList.map((movie) => (
+          {displayedMovies.map((movie) => (
             <MoviesCard
               onSaveClick={onSaveClick}
               onDeleteClick={onDeleteClick}
               movie={movie}
-              key={movie.idMoviesDb}
+              key={movie[keyProperty]}
             />
           ))}
         </ul>
       </section>
-      {showMovieList.length < moviesData.length && (
+      {isMoreFeatureActive && displayedMovies.length < moviesData.length && (
         <div className="movies__add-button-container">
           <button
             type="button"

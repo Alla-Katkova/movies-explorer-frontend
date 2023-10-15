@@ -14,7 +14,6 @@ export default function Navigation({ isLoggedIn }) {
   } else {
     document.body.style.overflow = "unset";
   }
-  const navigationStateClass = isHamburgerMenuOpened ? "navigation_state_on" : "navigation_state_off";
   return (
     <>
       {isLoggedIn ? (

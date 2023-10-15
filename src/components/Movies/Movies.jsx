@@ -15,30 +15,7 @@ import {
 import SearchForm from "../SearchForm/SearchForm";
 import { getMoviesWithLikes } from "../../utils/MainAndMoviesApiCombine";
 import { deleteMovie, saveMovie } from "../../utils/MainApi";
-
-const SERVER_ERROR_MESSAGE =
-  "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
-
-function EmptySearchResults({}) {
-  return <div className="movies__no-results">Ничего не найдено</div>;
-}
-
-function isMoviesViewListEmpty(list) {
-  return list && list.length === 0;
-}
-
-function isMoviesViewListExist(list) {
-  return list !== undefined && list !== null;
-}
-
-function filterMovies(moviesWithLikes, searchQuery, shortMoviesOnly) {
-  const SHORT_DURATION = 40;
-  return moviesWithLikes.filter((movie) => {
-    const isNameMatches = movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
-    const isDurationMatches = shortMoviesOnly ? movie.duration <= SHORT_DURATION : true;
-    return isNameMatches && isDurationMatches;
-  });
-}
+import { EmptySearchResults, filterMovies, isMoviesViewListEmpty, isMoviesViewListExist, SERVER_ERROR_MESSAGE } from "../../utils/search-tools";
 
 export default function Movies({}) {
   const [isLoading, setIsLoading] = useState(false);
@@ -63,21 +40,24 @@ export default function Movies({}) {
   const [moviesViewList, setMoviesViewList] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [shortMoviesOnly, setShortMoviesOnly] = useState(null);
+  const [resetListCounter, setResetListCounter] = useState(0);
+
+  function triggerResetList() {
+    setResetListCounter((prev) => prev + 1);
+  }
 
   function handleSearch(searchQueryParam, shortMoviesOnlyParam) {
     if (!searchQueryParam || searchQueryParam === "") {
       return;
     }
     console.log("handlesrech", searchQueryParam, shortMoviesOnlyParam);
-    const requestTimeout = setTimeout(() => {
-      setIsLoading(true);
-    }, 2000); //показываем колесико только если запрос слишком долгий
+    setIsLoading(true);
     return getMoviesWithLikes()
       .then((moviesWithLikes) => {
         const filteredMovies = filterMovies(moviesWithLikes, searchQueryParam, shortMoviesOnlyParam);
         setMoviesViewList(() => filteredMovies);
         setCachedSearchQuery(searchQueryParam);
-        setCachedShortMoviesOnly(shortMoviesOnlyParam);
+        setCachedShortMoviesOnly(Boolean(shortMoviesOnlyParam));
       })
       .catch((error) => {
         console.log(error);
@@ -85,18 +65,54 @@ export default function Movies({}) {
       })
       .finally(() => {
         setIsLoading(false);
-        clearTimeout(requestTimeout);
       });
   }
 
   function handleSaveMovie(movie) {
-    // посылает запрос на сервер и устанавливает setMoviesViewList, setError, setIsLoading
-    return saveMovie(movie).then(() => handleSearch(searchQuery, Boolean(shortMoviesOnly)));
+    return saveMovie(movie)
+      .then((response) => {
+        debugger;
+        // Update the local moviesViewList to mark the movie as saved
+        setMoviesViewList((prevList) => {
+          return prevList.map((m) => {
+            if (m.idMoviesDb === movie.idMoviesDb) {
+              // This is a basic example. Depending on the response structure,
+              // you may need to adjust it.
+              return {
+                ...m,
+                idMainDb: response["_id"], // assuming the response contains a new ID
+              };
+            }
+            return m;
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(SERVER_ERROR_MESSAGE);
+      });
   }
 
   function handleDeleteMovie(movie) {
-    // посылает запрос на сервер и устанавливает setMoviesViewList, setError, setIsLoading
-    return deleteMovie(movie.idMainDb).then(() => handleSearch(searchQuery, Boolean(shortMoviesOnly)));
+    return deleteMovie(movie.idMainDb)
+      .then(() => {
+        // Update the local moviesViewList to mark the movie as not saved
+        setMoviesViewList((prevList) => {
+          return prevList.map((m) => {
+            if (m.moviesDbId === movie.moviesDbId) {
+              return {
+                ...m,
+                idMainDb: null, // remove the saved ID
+              };
+            }
+            return m;
+          });
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setError(SERVER_ERROR_MESSAGE);
+      });
   }
 
   function renderList(list) {
@@ -112,6 +128,8 @@ export default function Movies({}) {
           moviesData={list}
           onSaveClick={handleSaveMovie}
           onDeleteClick={handleDeleteMovie}
+          keyProperty="idMoviesDb"
+          resetList={resetListCounter}
         />
       </>
     );
@@ -133,33 +151,28 @@ export default function Movies({}) {
     loadDataOnFirstRender();
   }, []); // пустой список зависимостей - эффект выполнится один раз
 
+  function searchAndResetMoreButton(searchQueryParam, shortMoviesOnlyParam) {
+    handleSearch(searchQueryParam, shortMoviesOnlyParam);
+    setResetListCounter((prev) => prev + 1);
+  }
+
   useEffect(() => {
     console.log("effect running");
-    handleSearch(searchQuery, Boolean(shortMoviesOnly));
+    searchAndResetMoreButton(searchQuery, Boolean(shortMoviesOnly));
   }, [shortMoviesOnly]);
   return (
     <>
-      <details>
-        <summary>moviesViewList</summary>
-        <div>Length: {moviesViewList?.length}</div>
-        <pre>{JSON.stringify(moviesViewList, null, 2)}</pre>
-      </details>
-      <details>
-        <summary>searchQuery</summary>
-        <pre>{JSON.stringify(searchQuery)}</pre>
-      </details>
       <Header isLoggedIn={true} />
       <main className="movies">
         <SearchForm
-          onSearch={handleSearch}
+          onSearch={searchAndResetMoreButton}
           inputValue={searchQuery}
           setInputValue={setSearchQuery}
           isShort={shortMoviesOnly}
           setIsShort={setShortMoviesOnly}
         />
         <div className="movies__error-message">{error}</div>
-        {isLoading ? <Preloader /> : null}
-        {renderList(moviesViewList)}
+        {isLoading ? <Preloader /> : renderList(moviesViewList)}
       </main>
       <Footer />
     </>

@@ -13,7 +13,6 @@
 .register__container {
     display: flex;
     flex-direction: column;
-    /* max-width: 396px; */
     height: 100%;
     padding-top: 40px;
 }
@@ -96,7 +95,6 @@
     font-weight: 500;
     line-height: 16.94px;
     height: 45px;
-    /* width: 396px; */
     border-radius: 3px;
 }
 

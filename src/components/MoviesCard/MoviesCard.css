@@ -153,3 +153,20 @@
         opacity: 1;
     }
 }
+
+/*сокрытие кнопки сохранить на экранах*/
+.movies-card:hover .movies-card__button_type_delete {
+    opacity: 1;
+}
+
+.movies-card__button_type_delete {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/*на мобильных кнопка всегда видна*/
+@media (max-width: 768px) {
+    .movies-card__button_type_delete {
+        opacity: 1;
+    }
+}

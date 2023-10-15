@@ -19,18 +19,19 @@
 .techs__container {
     max-width: 1280px;
     width: 100%;
-    padding-top: 0px;
+    padding-top: 0;
     padding-bottom: 70px;
     display: flex;
     box-sizing: border-box;
     align-items: center;
     flex-direction: column;
-    padding-left: 0px;
+    padding-left: 0;
+    margin: 0 auto;
 }
 
 .techs__podtitle {
     margin-top: 90px;
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-weight: 400;
     font-size: 50px;
     line-height: 58px;
@@ -115,7 +116,7 @@
         padding-top: 78px;
         padding-left: 20px;
         padding-right: 20px;
-        padding-bottom: 0px;
+        padding-bottom: 0;
         background-color: #202020;
     }
 }

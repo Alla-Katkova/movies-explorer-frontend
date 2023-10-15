@@ -1,4 +1,4 @@
-import { fetchSavedMovies } from "./MainApi";
+import { fetchSavedMovies, tranformSavedMoviesForUi } from "./MainApi";
 import { fetchMovies } from "./MoviesApi";
 
 function enrichMoviesWithLikes(movies, likes) {
@@ -13,14 +13,16 @@ function enrichMoviesWithLikes(movies, likes) {
 }
 
 export function getMoviesWithLikes() {
-  const likesInfoPromise = fetchSavedMovies().then((savedMovies) => {
-    return savedMovies.map((savedMovie) => {
-      return {
-        idMoviesDb: savedMovie.movieId,
-        idMainDb: savedMovie["_id"],
-      };
+  const likesInfoPromise = fetchSavedMovies()
+    .then((data) => tranformSavedMoviesForUi(data))
+    .then((savedMovies) => {
+      return savedMovies.map((savedMovie) => {
+        return {
+          idMoviesDb: savedMovie.movieId,
+          idMainDb: savedMovie["_id"],
+        };
+      });
     });
-  });
   return Promise.all([fetchMovies(), likesInfoPromise]).then(([movies, likes]) => {
     return enrichMoviesWithLikes(movies, likes);
   });

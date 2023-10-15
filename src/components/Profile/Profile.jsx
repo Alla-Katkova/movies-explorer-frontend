@@ -10,8 +10,11 @@ export default function Profile({ handleLogout }) {
   const [currentUserDetails, setCurrentUserDetails] = useState({ name: "", email: "" });
   const [serverError, setServerError] = useState("");
   const [successMessage, setSuccessMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
+
     getUserDetails()
       .then((userData) => {
         setCurrentUserDetails(userData);
@@ -19,7 +22,8 @@ export default function Profile({ handleLogout }) {
         setValue("email", userData.email);
         setValue("name", userData.name);
       })
-      .catch((error) => setServerError(error));
+      .catch((error) => setServerError(error))
+      .finally(() => setIsLoading(false));
   }, [setValue]);
 
   useEffect(() => {
@@ -40,6 +44,7 @@ export default function Profile({ handleLogout }) {
 
   function handleEdit(e) {
     e.preventDefault();
+    setIsLoading(true);
 
     const updatedUserDetails = {
       name: values.name || currentUserDetails.name,
@@ -51,7 +56,8 @@ export default function Profile({ handleLogout }) {
         setCurrentUserDetails({ ...currentUserDetails, ...updatedUserData });
         setSuccessMessage("Данные успешно сохранены!");
       })
-      .catch((error) => setServerError(error.message));
+      .catch((error) => setServerError(error.message))
+      .finally(() => setIsLoading(false));
   }
 
   function handleInputChange(e) {
@@ -89,6 +95,7 @@ export default function Profile({ handleLogout }) {
                 value={values.name || ""}
                 placeholder="Имя"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               <span
                 className="profile__error-message"
@@ -112,6 +119,7 @@ export default function Profile({ handleLogout }) {
                 value={values.email || ""}
                 placeholder="Email"
                 onChange={handleInputChange}
+                disabled={isLoading}
               />
               <span
                 className="profile__error-message"
@@ -129,7 +137,7 @@ export default function Profile({ handleLogout }) {
               </span>
               <button
                 className="profile__button profile__button-edit"
-                disabled={isButtonDisabled()}
+                disabled={isButtonDisabled() || isLoading}
                 type="submit"
               >
                 Редактировать

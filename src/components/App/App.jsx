@@ -7,14 +7,12 @@ import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Movies from "../Movies/Movies.jsx";
 import NotFound from "../NotFound/NotFound";
-import { login } from "../../utils/MainApi";
-import { logout, signup } from "../../utils/MainApi";
+import { login, logout, signup } from "../../utils/MainApi";
 import { useState } from "react";
 import { initCache, initJwt, isJwtTokenExist } from "../../utils/localStorage";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
-  //критерий залогиненности - это наличие жвт токена, проверяемое функцией isJwtTokenExist
   const [isLoggedIn, setIsLoggedIn] = useState(isJwtTokenExist());
 
   function handleLogin(values) {
@@ -37,7 +35,6 @@ function App() {
 
   return (
     <div className="app">
-      <pre>Is logged in: {JSON.stringify(isLoggedIn)}</pre>
       <Routes>
         <Route
           path="/"

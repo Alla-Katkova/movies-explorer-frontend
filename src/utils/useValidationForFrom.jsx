@@ -21,7 +21,7 @@ export default function useValidationForFrom() {
         return { ...oldErrors, [name]: "Неправильный формат" };
       });
       setIsValid(false);
-      return; // Exit early after setting the error
+      return;
     }
 
     setErrors((oldErrors) => {
