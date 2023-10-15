@@ -72,15 +72,12 @@ export default function Movies({}) {
     return saveMovie(movie)
       .then((response) => {
         debugger;
-        // Update the local moviesViewList to mark the movie as saved
         setMoviesViewList((prevList) => {
           return prevList.map((m) => {
             if (m.idMoviesDb === movie.idMoviesDb) {
-              // This is a basic example. Depending on the response structure,
-              // you may need to adjust it.
               return {
                 ...m,
-                idMainDb: response["_id"], // assuming the response contains a new ID
+                idMainDb: response["_id"],
               };
             }
             return m;
@@ -96,13 +93,12 @@ export default function Movies({}) {
   function handleDeleteMovie(movie) {
     return deleteMovie(movie.idMainDb)
       .then(() => {
-        // Update the local moviesViewList to mark the movie as not saved
         setMoviesViewList((prevList) => {
           return prevList.map((m) => {
-            if (m.moviesDbId === movie.moviesDbId) {
+            if (m.idMoviesDb === movie.idMoviesDb) {
               return {
                 ...m,
-                idMainDb: null, // remove the saved ID
+                idMainDb: null,
               };
             }
             return m;

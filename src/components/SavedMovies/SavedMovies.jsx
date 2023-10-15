@@ -36,7 +36,6 @@ export default function SavedMovies({}) {
     return deleteMovie(idDeleted)
       .then(() => {
         console.log("successfully deleted");
-        // Update the local moviesViewList to remove the deleted movie
         setMoviesViewList((prevList) => {
           return prevList.filter((movie) => movie["_id"] !== idDeleted);
         });
