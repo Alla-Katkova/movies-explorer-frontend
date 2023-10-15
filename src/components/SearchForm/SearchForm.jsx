@@ -1,71 +1,64 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./SearchForm.css";
 
-export default function SearchForm({ onSearch, searchQuery, shortMoviesOnly }) {
-  const [query, setQuery] = useState(searchQuery);
-  const [onlyShort, setOnlyShort] = useState(shortMoviesOnly);
-  const [isErrorVisible, setIsErrorVisible] = useState(false);
+function SearchForm({ onSearch, inputValue = "", setInputValue, isShort = false, setIsShort }) {
+  const [emptyInputError, setEmptyInputError] = useState(false);
 
-  function handleSearch() {
-    if (isValidQuery()) {
-      onSearch(query, onlyShort);
-      setIsErrorVisible(false);
+  const handleSearchInput = (e) => {
+    setInputValue(e.target.value);
+  };
+
+  const handleCheckbox = () => {
+    setIsShort(!isShort);
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!inputValue) {
+      setEmptyInputError(true);
     } else {
-      setIsErrorVisible(true);
+      setEmptyInputError(false);
+      onSearch(inputValue, isShort);
     }
-  }
-
-  function onCheckbox() {
-    setOnlyShort(!onlyShort);
-    handleSearch();
-  }
-
-  function isValidQuery() {
-    return query.trim().length > 0;
-  }
-
-  useEffect(() => {
-    setQuery(searchQuery);
-    setOnlyShort(shortMoviesOnly);
-  }, [searchQuery, shortMoviesOnly]);
+  };
 
   return (
     <section className="search">
       <form
+        noValidate
         className="search__form"
         name="search"
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
+        onSubmit={handleSearch}
       >
         <input
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          className="search__input"
+          className={emptyInputError ? "search__input search__input-error" : "search__input"}
           name="search"
           type="text"
           placeholder="Фильм"
+          onChange={handleSearchInput}
+          value={inputValue || ""}
           required
         />
-
-        <button className="search__button" onClick={handleSearch} type="button"></button>
-
+        <button
+          className="search__button"
+          type="submit"
+        ></button>
       </form>
-      {isErrorVisible && (
-        <div className="search__error">Нужно ввести ключевое слово</div>
-      )}
       <form className="filter">
         <label className="filter__checkbox">
           <input
             className="filter__input"
             type="checkbox"
-            checked={onlyShort}
-            onChange={onCheckbox}
+            checked={isShort || false}
+            onChange={handleCheckbox}
           />
           <span className="filter__switch"></span>
         </label>
         <span className="filter__text">Короткометражки</span>
       </form>
+      {emptyInputError && <div className="search__error">Нужно ввести ключевое слово</div>}
     </section>
   );
 }
+
+export default React.memo(SearchForm);

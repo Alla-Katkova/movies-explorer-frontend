@@ -1,30 +1,29 @@
+import { getCachedMovies, initCache, isCacheValid, isMoviesInCache, setCachedMovies } from "./localStorage";
+
 const MOVIES_API_URL = "https://api.nomoreparties.co/";
 const MOVIES_FULL_API_URL = `${MOVIES_API_URL}/beatfilm-movies/`;
-
 
 function transformFilmsForUi(moviesFromServer) {
   return moviesFromServer.map((movie) => {
     const thumbnailUrl = movie.image.formats.thumbnail.url;
     return {
-      id: movie.id,
+      idMoviesDb: movie.id,
       title: movie.nameRU,
       duration: movie.duration,
-      src: `${MOVIES_API_URL}/${thumbnailUrl}`,
       country: movie.country,
       director: movie.director,
       year: movie.year,
       description: movie.description,
-      image: movie.image,
+      image: `${MOVIES_API_URL}/${thumbnailUrl}`,
       trailerLink: movie.trailerLink,
       thumbnail: movie.thumbnail,
-      movieId: movie.id,
       nameRU: movie.nameRU,
-      nameEN: movie.nameEN
+      nameEN: movie.nameEN,
     };
   });
 }
 
-export function fetchMovies() {
+function fetchMoviesFromApi() {
   return new Promise((resolve, reject) => {
     fetch(MOVIES_FULL_API_URL)
       .then((wrap) => {
@@ -41,3 +40,15 @@ export function fetchMovies() {
   });
 }
 
+export function fetchMovies() {
+  if (isMoviesInCache()) {
+    return Promise.resolve(getCachedMovies());
+  }
+  if (!isCacheValid()) {
+    initCache();
+  }
+  return fetchMoviesFromApi().then((moviesFromApi) => {
+    setCachedMovies(moviesFromApi);
+    return getCachedMovies();
+  });
+}

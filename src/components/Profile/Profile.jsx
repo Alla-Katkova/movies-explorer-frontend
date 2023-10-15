@@ -2,25 +2,39 @@ import Header from "../Header/Header.jsx";
 import "./Profile.css";
 import { useEffect, useState } from "react";
 import { editUserDetails, getUserDetails } from "../../utils/MainApi";
-import useValidationForForm from "../../utils/useValidationForForm";
+import useValidationForFrom from "../../utils/useValidationForFrom";
+import { usernamePattern } from "../../utils/regex";
 
 export default function Profile({ handleLogout }) {
-  const { values, errors, isValid, handleChange } = useValidationForForm();
-  const [userDetails, setUserDetails] = useState({ name: "", email: "" });
+  const { values, errors, isValid, setValue, handleChange } = useValidationForFrom();
+  const [currentUserDetails, setCurrentUserDetails] = useState({ name: "", email: "" });
   const [serverError, setServerError] = useState("");
+  const [successMessage, setSuccessMessage] = useState(null);
 
   useEffect(() => {
     getUserDetails()
       .then((userData) => {
-        setUserDetails(userData);
+        setCurrentUserDetails(userData);
         setServerError("");
+        setValue("email", userData.email);
+        setValue("name", userData.name);
       })
       .catch((error) => setServerError(error));
-  }, []);
+  }, [setValue]);
+
+  useEffect(() => {
+    if (successMessage) {
+      const timer = setTimeout(() => {
+        setSuccessMessage(null);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [successMessage]);
 
   function isButtonDisabled() {
-    const hasNameChanged = values.name && values.name !== userDetails.name;
-    const hasEmailChanged = values.email && values.email !== userDetails.email;
+    const hasNameChanged = values.name && values.name !== currentUserDetails.name;
+    const hasEmailChanged = values.email && values.email !== currentUserDetails.email;
     return !isValid || !(hasNameChanged || hasEmailChanged);
   }
 
@@ -28,12 +42,15 @@ export default function Profile({ handleLogout }) {
     e.preventDefault();
 
     const updatedUserDetails = {
-      name: values.name || userDetails.name,
-      email: values.email || userDetails.email,
+      name: values.name || currentUserDetails.name,
+      email: values.email || currentUserDetails.email,
     };
-    console.log(updatedUserDetails);
+
     editUserDetails(updatedUserDetails)
-      .then((res) => setUserDetails(res))
+      .then((updatedUserData) => {
+        setCurrentUserDetails({ ...currentUserDetails, ...updatedUserData });
+        setSuccessMessage("Данные успешно сохранены!");
+      })
       .catch((error) => setServerError(error.message));
   }
 
@@ -46,11 +63,19 @@ export default function Profile({ handleLogout }) {
     <>
       <Header isLoggedIn={true} />
       <main className="profile">
+        {successMessage && <section className="profile__success-message">{successMessage}</section>}
         <section className="profile__container">
-          <h1 className="profile__title">Привет, {userDetails.name}!</h1>
-          <form className="profile__form" noValidate onSubmit={handleEdit}>
+          <h1 className="profile__title">Привет, {currentUserDetails.name}!</h1>
+          <form
+            className="profile__form"
+            noValidate
+            onSubmit={handleEdit}
+          >
             <fieldset className="profile__inputs profile__inputs-name">
-              <label className="profile__label" htmlFor="name">
+              <label
+                className="profile__label"
+                htmlFor="name"
+              >
                 Имя
               </label>
               <input
@@ -60,31 +85,60 @@ export default function Profile({ handleLogout }) {
                 type="text"
                 minLength={2}
                 maxLength={15}
-                // required
-                placeholder={userDetails.name}
+                pattern={usernamePattern}
+                value={values.name || ""}
+                placeholder="Имя"
                 onChange={handleInputChange}
               />
-              <span className="profile__error-message" id="name-error">
+              <span
+                className="profile__error-message"
+                id="name-error"
+              >
                 {errors.name}
               </span>
             </fieldset>
             <fieldset className="profile__inputs profile__inputs-email">
-              <label className="profile__label" htmlFor="email">
+              <label
+                className="profile__label"
+                htmlFor="email"
+              >
                 E-mail
               </label>
-              <input className="profile__input" name="email" id="email" type="email" placeholder={userDetails.email} onChange={handleInputChange} />
-              <span className="profile__error-message" id="email-error">
+              <input
+                className="profile__input"
+                name="email"
+                id="email"
+                type="email"
+                value={values.email || ""}
+                placeholder="Email"
+                onChange={handleInputChange}
+              />
+              <span
+                className="profile__error-message"
+                id="email-error"
+              >
                 {errors.email}
               </span>
             </fieldset>
             <div className="profile__buttons-container">
-              <span className="profile__error-message profile__error-message-type-server" id="server-error">
+              <span
+                className="profile__error-message profile__error-message-type-server"
+                id="server-error"
+              >
                 {serverError}
               </span>
-              <button className="profile__button profile__button-edit" disabled={isButtonDisabled()} type="submit">
+              <button
+                className="profile__button profile__button-edit"
+                disabled={isButtonDisabled()}
+                type="submit"
+              >
                 Редактировать
               </button>
-              <button className="profile__button profile__button-signout" onClick={handleLogout}>
+              <button
+                className="profile__button profile__button-signout"
+                onClick={handleLogout}
+                type="button"
+              >
                 Выйти из аккаунта
               </button>
             </div>

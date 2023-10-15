@@ -8,12 +8,22 @@ export default function Footer() {
         <p className="footer__year">© 2023</p>
         <ul className="footer__list">
           <li className="footer__item">
-            <a className="footer__item-link" href="https://practicum.yandex.ru/" target="_blank">
+            <a
+              className="footer__item-link"
+              href="https://practicum.yandex.ru/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Яндекс.Практикум
             </a>
           </li>
           <li className="footer__item">
-            <a className="footer__item-link" href="https://github.com/Alla-Katkova" target="_blank">
+            <a
+              className="footer__item-link"
+              href="https://github.com/Alla-Katkova"
+              target="_blank"
+              rel="noreferrer"
+            >
               Github
             </a>
           </li>

@@ -1,7 +1,7 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard.jsx";
 import React, { useEffect, useState } from "react";
-
+import { JSONDebug } from "../../utils/debugUtils";
 
 const DEVICE_PARAMS = {
   desktop: {
@@ -40,8 +40,9 @@ function debounce(func, wait) {
   };
 }
 
+export default function MoviesCardList({ moviesData, onDeleteClick, onSaveClick }) {
+  // moviesData должна быть массивом, не null!
 
-export default function MoviesCardList({ moviesData }) {
   const [showMovieList, setShowMovieList] = useState([]);
   const [cardsConfig, setCardsConfig] = useState({ total: 12, more: 3 });
 
@@ -63,42 +64,50 @@ export default function MoviesCardList({ moviesData }) {
   const debouncedHandleResize = debounce(updateScreenConfig, 500);
 
   useEffect(() => {
-    window.addEventListener('resize', debouncedHandleResize);
+    console.log("effect is running");
+    window.addEventListener("resize", debouncedHandleResize);
 
     updateScreenConfig(); // initial call to set correct values based on screen size
 
     return () => {
-      window.removeEventListener('resize', debouncedHandleResize);
+      window.removeEventListener("resize", debouncedHandleResize);
     };
   }, [moviesData]);
-
 
   function handleMoreMovies() {
     const newTotal = showMovieList.length + cardsConfig.more;
     const additionalMovies = moviesData.slice(showMovieList.length, newTotal);
     console.log("setting new value", [...showMovieList, ...additionalMovies]);
-    setShowMovieList(prevMovies => [...prevMovies, ...additionalMovies]);
+    setShowMovieList((prevMovies) => [...prevMovies, ...additionalMovies]);
   }
-
 
   return (
     <>
+      <JSONDebug
+        variable={moviesData}
+        label={"moviesData in cardlist (uncut)"}
+      >
+        {moviesData.length}
+      </JSONDebug>
       <section className="movies-list">
         <ul className="movies-list__cataloges">
-          {showMovieList.map(movie => (
+          {showMovieList.map((movie) => (
             <MoviesCard
-              onSaveClick={(s) => {console.log(s)}}
-              onDeleteClick={(s) => {console.log(s)}}
-              isSaved={(s) => {console.log(s)}}
+              onSaveClick={onSaveClick}
+              onDeleteClick={onDeleteClick}
               movie={movie}
-              key={movie.id}
+              key={movie.idMoviesDb}
             />
           ))}
         </ul>
       </section>
       {showMovieList.length < moviesData.length && (
         <div className="movies__add-button-container">
-          <button type="button" className="movies__add-button" onClick={handleMoreMovies}>
+          <button
+            type="button"
+            className="movies__add-button"
+            onClick={handleMoreMovies}
+          >
             Ещё
           </button>
         </div>

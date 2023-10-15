@@ -1,8 +1,9 @@
 import { useCallback, useState } from "react";
+import isEmail from "validator/lib/isEmail";
 
-export default function useValidationForForm() {
-  const [values, setValues] = useState([]);
-  const [errors, setErrors] = useState([]);
+export default function useValidationForFrom() {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
   function handleChange(event) {
@@ -14,6 +15,14 @@ export default function useValidationForForm() {
     setValues((oldValues) => {
       return { ...oldValues, [name]: value };
     });
+
+    if (name === "email" && !isEmail(value)) {
+      setErrors((oldErrors) => {
+        return { ...oldErrors, [name]: "Неправильный формат" };
+      });
+      setIsValid(false);
+      return; // Exit early after setting the error
+    }
 
     setErrors((oldErrors) => {
       return { ...oldErrors, [name]: validationMessage };
@@ -28,7 +37,6 @@ export default function useValidationForForm() {
     });
   }, []);
 
-  //  возвращает все значения, кроме тех(dataold) что были переланы, если не было передано, то все обнуляется
   function resetForm(dataOld = {}) {
     setValues(dataOld);
     setErrors({});

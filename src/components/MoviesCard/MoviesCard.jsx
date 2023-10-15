@@ -1,6 +1,7 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 import React from "react";
+import { JSONDebug } from "../../utils/debugUtils";
 
 function formatDuration(duration) {
   const hours = Math.trunc(duration / 60);
@@ -12,14 +13,16 @@ function formatDuration(duration) {
   }
 }
 
-export default function MoviesCard({ movie, isSaved, onSaveClick, onDeleteClick }) {
+export default function MoviesCard({ movie, onSaveClick, onDeleteClick }) {
   let location = useLocation();
+  const isSaved = Boolean(movie.idMainDb);
+
   return (
     <li className="movies-card">
-      <details>
-        <summary>movie</summary>
-        <pre>{JSON.stringify(movie, null, 2)}</pre>
-      </details>
+      <JSONDebug
+        label={"movie"}
+        variable={movie}
+      />
       <article className="movies-card__item">
         <div className="movies-card__preview-container">
           {location.pathname === "/movies" &&
@@ -42,9 +45,7 @@ export default function MoviesCard({ movie, isSaved, onSaveClick, onDeleteClick 
             <button
               type="button"
               className="movies-card__button movies-card__button_type_delete"
-              onClick={() => {
-                console.log("click on button for delete");
-              }}
+              onClick={() => onDeleteClick(movie)}
             ></button>
           )}
           <a
@@ -53,7 +54,11 @@ export default function MoviesCard({ movie, isSaved, onSaveClick, onDeleteClick 
             target="_blank"
             rel="noreferrer"
           >
-            <img src={movie.src} className="movies-card__preview" alt={movie.title} />
+            <img
+              src={movie.image}
+              className="movies-card__preview"
+              alt={movie.title}
+            />
           </a>
         </div>
         <div className="movies-card__description">

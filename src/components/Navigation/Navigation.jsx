@@ -19,8 +19,14 @@ export default function Navigation({ isLoggedIn }) {
     <>
       {isLoggedIn ? (
         <>
-          <Hamburger isBurgerOpened={isHamburgerMenuOpened} onClickBurger={onClickBurger} />
-          <HamburgerMenu isOpened={isHamburgerMenuOpened} setIsOpened={setIsHamburgerMenuOpened} />
+          <Hamburger
+            isBurgerOpened={isHamburgerMenuOpened}
+            onClickBurger={onClickBurger}
+          />
+          <HamburgerMenu
+            isOpened={isHamburgerMenuOpened}
+            setIsOpened={setIsHamburgerMenuOpened}
+          />
           <DesktopMenu />
         </>
       ) : (

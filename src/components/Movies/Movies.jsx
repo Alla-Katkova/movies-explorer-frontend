@@ -1,130 +1,148 @@
 import "./Movies.css";
-import MoviesCardList from "../MoviesCardList/MoviesCardList.jsx";
-import SearchForm from "../SearchForm/SearchForm.jsx";
 import Header from "../Header/Header.jsx";
 import Footer from "../Footer/Footer.jsx";
 import React, { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
-import { fetchMovies } from "../../utils/MoviesApi";
-import { fetchSavedMovies } from "../../utils/MainApi";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import {
+  getCachedSearchQuery,
+  getCachedShortMoviesOnly,
+  initCache,
+  isCacheValid,
+  setCachedSearchQuery,
+  setCachedShortMoviesOnly,
+} from "../../utils/localStorage";
+import SearchForm from "../SearchForm/SearchForm";
+import { getMoviesWithLikes } from "../../utils/MainAndMoviesApiCombine";
+import { deleteMovie, saveMovie } from "../../utils/MainApi";
 
-function addSavedFlag(movies, savedMovies) {
-  return movies.map((movie) => ({
-    ...movie,
-    isSaved: !!savedMovies.find((s) => s.id === movie.id)
-  }));
+const SERVER_ERROR_MESSAGE =
+  "Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз";
+
+function EmptySearchResults({}) {
+  return <div className="movies__no-results">Ничего не найдено</div>;
 }
 
-function filterMovies(moviesToFilter, query, onlyShort = false) {
-  if (!query || query === "") {
-    return null;
-  }
-  return moviesToFilter.filter(function(movie) {
-    // ищем по имени
-    const doesTitleMatchQuery = movie.title.toLowerCase().includes(query.toLowerCase());
+function isMoviesViewListEmpty(list) {
+  return list && list.length === 0;
+}
 
-    // фильтруем короткометражки
-    let isDurationAcceptable;
-    if (onlyShort) {
-      isDurationAcceptable = movie.duration <= 40;
-    } else {
-      isDurationAcceptable = true;
-    }
-    return doesTitleMatchQuery && isDurationAcceptable;
+function isMoviesViewListExist(list) {
+  return list !== undefined && list !== null;
+}
+
+function filterMovies(moviesWithLikes, searchQuery, shortMoviesOnly) {
+  const SHORT_DURATION = 40;
+  return moviesWithLikes.filter((movie) => {
+    const isNameMatches = movie.nameRU.toLowerCase().includes(searchQuery.toLowerCase()) || movie.nameEN.toLowerCase().includes(searchQuery.toLowerCase());
+    const isDurationMatches = shortMoviesOnly ? movie.duration <= SHORT_DURATION : true;
+    return isNameMatches && isDurationMatches;
   });
 }
 
-function isMoviesInCache(parsedData) {
-  return parsedData && parsedData.movies && parsedData.movies.length > 0;
-}
-
-function getDataFromCache() {
-  const cachedData = localStorage.getItem("moviesCache");
-  const parsedData = cachedData && JSON.parse(cachedData);
-  return parsedData;
-}
-
-export default function Movies() {
+export default function Movies({}) {
   const [isLoading, setIsLoading] = useState(false);
-  const [movies, setMovies] = useState([]);
-  const [filteredMovies, setFilteredMovies] = useState([]);
   const [error, setError] = useState(null);
+
+  //moviesViewList - это итоговый список фильмов, уже отфильтрованный и обогащенный лайками (но не обрезанный кнопкой Еще). Он содержит в себе все то, что нужно для отображения карточек.
+  //null означает что запроса не было, [] - что запрос не дал результатов
+  //любые изменения внешнего вида списка - это результат того, что moviesViewList был переписан
+  //moviesViewList состоит из объектов вида:
+  //   {
+  //     moviesDbId: 23, // movieId в MoviesDb
+  //     mainDbId: "111122223333444455556666", //id в MainDb. Может отсутствовать. Если есть - значит фильм лайкнут текущим пользователем.
+  //     trailerLink: "https://youtube.com/asas",
+  //     nameRU: "«Роллинг Стоунз» в изгнании",
+  //     nameEN: "Stones in Exile",
+  //     duration: 61, // за форматирование отвечает сама карточка
+  //     description: "В конце 1960-х группа «Роллинг Стоунз».... ",
+  //     director: "Стивен Кайак ",
+  //     country: "США",
+  //     year: "2010",
+  //   },
+  const [moviesViewList, setMoviesViewList] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [shortMoviesOnly, setShortMoviesOnly] = useState(false);
+  const [shortMoviesOnly, setShortMoviesOnly] = useState(null);
 
-  function updateFilteredMoviesState(allMovies) {
-    return fetchSavedMovies()
-      .then((savedMovies) => {
-        const allMoviesWithSavedFlags = addSavedFlag(allMovies, savedMovies);
-        setMovies(allMoviesWithSavedFlags);
-        setFilteredMovies(filterMovies(allMoviesWithSavedFlags, searchQuery, shortMoviesOnly));
+  function handleSearch(searchQueryParam, shortMoviesOnlyParam) {
+    if (!searchQueryParam || searchQueryParam === "") {
+      return;
+    }
+    console.log("handlesrech", searchQueryParam, shortMoviesOnlyParam);
+    const requestTimeout = setTimeout(() => {
+      setIsLoading(true);
+    }, 2000); //показываем колесико только если запрос слишком долгий
+    return getMoviesWithLikes()
+      .then((moviesWithLikes) => {
+        const filteredMovies = filterMovies(moviesWithLikes, searchQueryParam, shortMoviesOnlyParam);
+        setMoviesViewList(() => filteredMovies);
+        setCachedSearchQuery(searchQueryParam);
+        setCachedShortMoviesOnly(shortMoviesOnlyParam);
       })
       .catch((error) => {
-        console.error("Error fetching saved movies:", error);
-        setError(`Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.`);
+        console.log(error);
+        setError(SERVER_ERROR_MESSAGE);
+      })
+      .finally(() => {
+        setIsLoading(false);
+        clearTimeout(requestTimeout);
       });
   }
 
-  function handleSearch(searchQuery, shortMoviesOnly) {
-    setSearchQuery(searchQuery);
-    setFilteredMovies(filterMovies(movies, searchQuery, shortMoviesOnly));
-    const cache = {
-      searchQuery,
-      shortMoviesOnly,
-      movies
-    };
-    localStorage.setItem("moviesCache", JSON.stringify(cache));
+  function handleSaveMovie(movie) {
+    // посылает запрос на сервер и устанавливает setMoviesViewList, setError, setIsLoading
+    return saveMovie(movie).then(() => handleSearch(searchQuery, Boolean(shortMoviesOnly)));
   }
 
-  function restoreStateFromCache(cachedData) {
-    setSearchQuery(cachedData.searchQuery);
-    setShortMoviesOnly(cachedData.shortMoviesOnly);
-
-    const allMoviesWithSavedFlags = addSavedFlag(cachedData.movies, []);
-    setMovies(allMoviesWithSavedFlags);
-    setFilteredMovies(filterMovies(allMoviesWithSavedFlags, cachedData.searchQuery, cachedData.shortMoviesOnly));
+  function handleDeleteMovie(movie) {
+    // посылает запрос на сервер и устанавливает setMoviesViewList, setError, setIsLoading
+    return deleteMovie(movie.idMainDb).then(() => handleSearch(searchQuery, Boolean(shortMoviesOnly)));
   }
 
+  function renderList(list) {
+    if (!isMoviesViewListExist(list)) {
+      return null;
+    }
+    if (isMoviesViewListEmpty(list)) {
+      return <EmptySearchResults />;
+    }
+    return (
+      <>
+        <MoviesCardList
+          moviesData={list}
+          onSaveClick={handleSaveMovie}
+          onDeleteClick={handleDeleteMovie}
+        />
+      </>
+    );
+  }
 
-  function setStateFromServerAndFillCache() {
-    setIsLoading(true);
-    fetchMovies()
-      .then((moviesFromServer) => {
-        localStorage.setItem(
-          "moviesCache",
-          JSON.stringify({
-            searchQuery: searchQuery,
-            shortMoviesOnly: shortMoviesOnly,
-            movies: moviesFromServer
-          })
-        );
-        updateFilteredMoviesState(moviesFromServer);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((error) => {
-        console.error("Error fetching movies:", error);
-        setError(`Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз.`);
-        setIsLoading(false);
-        setMovies([]);
-      });
+  function loadDataOnFirstRender() {
+    if (!isCacheValid()) {
+      initCache();
+    }
+    if (getCachedSearchQuery() === "") {
+      return;
+    }
+    setSearchQuery(getCachedSearchQuery());
+    setShortMoviesOnly(getCachedShortMoviesOnly());
   }
 
   useEffect(() => {
-    const cachedData = getDataFromCache();
+    console.log("effect running");
+    loadDataOnFirstRender();
+  }, []); // пустой список зависимостей - эффект выполнится один раз
 
-    if (isMoviesInCache(cachedData)) {
-      restoreStateFromCache(cachedData);
-    } else {
-      setStateFromServerAndFillCache();
-    }
-  }, []);
-
+  useEffect(() => {
+    console.log("effect running");
+    handleSearch(searchQuery, Boolean(shortMoviesOnly));
+  }, [shortMoviesOnly]);
   return (
     <>
       <details>
-        <summary>filteredMovies</summary>
-        <pre>{JSON.stringify(filteredMovies, null, 2)}</pre>
+        <summary>moviesViewList</summary>
+        <div>Length: {moviesViewList?.length}</div>
+        <pre>{JSON.stringify(moviesViewList, null, 2)}</pre>
       </details>
       <details>
         <summary>searchQuery</summary>
@@ -132,14 +150,16 @@ export default function Movies() {
       </details>
       <Header isLoggedIn={true} />
       <main className="movies">
-
-        <SearchForm onSearch={handleSearch} searchQuery={searchQuery} shortMoviesOnly={shortMoviesOnly} />
-
+        <SearchForm
+          onSearch={handleSearch}
+          inputValue={searchQuery}
+          setInputValue={setSearchQuery}
+          isShort={shortMoviesOnly}
+          setIsShort={setShortMoviesOnly}
+        />
         <div className="movies__error-message">{error}</div>
         {isLoading ? <Preloader /> : null}
-
-        {filteredMovies && filteredMovies.length === 0 ? <div className="movies__no-results">Ничего не найдено</div> : <MoviesCardList moviesData={filteredMovies || []} />}
-
+        {renderList(moviesViewList)}
       </main>
       <Footer />
     </>

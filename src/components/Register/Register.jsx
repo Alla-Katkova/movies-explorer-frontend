@@ -1,16 +1,23 @@
 import HomeButton from "../HomeButton/HomeButton.jsx";
 import "./Register.css";
 import { Link, Navigate, useLocation } from "react-router-dom";
-import useValidationForForm from "../../utils/useValidationForForm";
+import useValidationForFrom from "../../utils/useValidationForFrom";
 import { useState } from "react";
+import { usernamePattern } from "../../utils/regex";
 
 export default function Register({ isLoggedIn, handleRegister }) {
-  const { values, errors, isValid, handleChange } = useValidationForForm();
+  const { values, errors, isValid, handleChange } = useValidationForFrom();
   const [serverError, setServerError] = useState("");
   let location = useLocation();
 
   if (isLoggedIn) {
-    return <Navigate to="/movies" state={{ from: location }} replace />;
+    return (
+      <Navigate
+        to="/movies"
+        state={{ from: location }}
+        replace
+      />
+    );
   }
 
   function handleSubmit(e) {
@@ -32,7 +39,11 @@ export default function Register({ isLoggedIn, handleRegister }) {
       </div>
       <div className="register__container">
         <h1 className="register__title">Добро пожаловать!</h1>
-        <form className="register__form" noValidate onSubmit={handleSubmit}>
+        <form
+          className="register__form"
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <fieldset className="register__inputs">
             <label className="register__label">
               Имя
@@ -44,11 +55,15 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 minLength={2}
                 maxLength={15}
                 required
+                pattern={usernamePattern}
                 placeholder="Имя"
                 onChange={handleInputChange}
               />
             </label>
-            <span className="register__error-message" id="name-error">
+            <span
+              className="register__error-message"
+              id="name-error"
+            >
               {errors.name}
             </span>
           </fieldset>
@@ -62,11 +77,13 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 type="text"
                 required
                 placeholder="Email"
-                pattern="^.+@.+\..+$"
                 onChange={handleInputChange}
               />
             </label>
-            <span className="register__error-message" id="email-error">
+            <span
+              className="register__error-message"
+              id="email-error"
+            >
               {errors.email}
             </span>
           </fieldset>
@@ -85,20 +102,33 @@ export default function Register({ isLoggedIn, handleRegister }) {
                 onChange={handleInputChange}
               />
             </label>
-            <span className="register__error-message" id="password-error">
+            <span
+              className="register__error-message"
+              id="password-error"
+            >
               {errors.password}
-            </span>
-            <span className="register__error-message" id="server-error">
-              {serverError}
             </span>
           </fieldset>
           <div className="register__button-common-container">
-            <button type="submit" disabled={!isValid} className={!isValid ? "register__button register__button_type_disabled" : "register__button"}>
+            <span
+              className="register__error-message register__error-message_type_server"
+              id="server-error"
+            >
+              {serverError.message}
+            </span>
+            <button
+              type="submit"
+              disabled={!isValid}
+              className={!isValid ? "register__button register__button_type_disabled" : "register__button"}
+            >
               Зарегистрироваться
             </button>
             <div className="register__link-container">
               <span className="register__link-already-registered">Уже зарегистрированы?</span>
-              <Link className="register__link-signin" to="/signin">
+              <Link
+                className="register__link-signin"
+                to="/signin"
+              >
                 Войти
               </Link>
             </div>
