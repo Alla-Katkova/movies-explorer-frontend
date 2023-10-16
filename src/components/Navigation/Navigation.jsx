@@ -4,8 +4,7 @@ import HamburgerMenu from "../HamburgerMenu/HamburgerMenu";
 import DesktopMenu from "../DesktopMenu/DesktopMenu";
 import LoggedOutUserMenu from "../LoggedOutUserMenu/LoggedOutUserMenu";
 
-export default function Navigation() {
-  const loggedIn = true;
+export default function Navigation({ isLoggedIn }) {
   const [isHamburgerMenuOpened, setIsHamburgerMenuOpened] = useState(false);
   const onClickBurger = () => {
     setIsHamburgerMenuOpened(true);
@@ -15,13 +14,18 @@ export default function Navigation() {
   } else {
     document.body.style.overflow = "unset";
   }
-  const navigationStateClass = isHamburgerMenuOpened ? "navigation_state_on" : "navigation_state_off";
   return (
     <>
-      {loggedIn ? (
+      {isLoggedIn ? (
         <>
-          <Hamburger isBurgerOpened={isHamburgerMenuOpened} onClickBurger={onClickBurger} />
-          <HamburgerMenu isOpened={isHamburgerMenuOpened} setIsOpened={setIsHamburgerMenuOpened} />
+          <Hamburger
+            isBurgerOpened={isHamburgerMenuOpened}
+            onClickBurger={onClickBurger}
+          />
+          <HamburgerMenu
+            isOpened={isHamburgerMenuOpened}
+            setIsOpened={setIsHamburgerMenuOpened}
+          />
           <DesktopMenu />
         </>
       ) : (

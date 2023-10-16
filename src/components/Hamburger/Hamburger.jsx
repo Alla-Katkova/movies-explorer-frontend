@@ -5,5 +5,11 @@ export default function Hamburger({ isBurgerOpened, onClickBurger }) {
     onClickBurger();
   }
 
-  return <button type="button" onClick={handleOnClickBurger} className="hamburger-button"></button>;
+  return (
+    <button
+      type="button"
+      onClick={handleOnClickBurger}
+      className="hamburger-button"
+    ></button>
+  );
 }

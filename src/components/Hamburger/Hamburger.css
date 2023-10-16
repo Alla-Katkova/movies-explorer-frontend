@@ -1,21 +1,21 @@
 .hamburger-button {
-  display: none;
+    display: none;
 }
 
 .hamburger-button:hover {
-  cursor: pointer;
-  opacity: 0.8;
+    cursor: pointer;
+    opacity: 0.8;
 }
 
 @media screen and (max-width: 768px) {
-  .hamburger-button {
-    display: flex;
-    background-image: url(../../images/burgerIcon.png);
-    background-repeat: no-repeat;
-    background-color: transparent;
-    border: none;
-    background-position: center;
-    width: 44px;
-    height: 44px;
-  }
+    .hamburger-button {
+        display: flex;
+        background-image: url(../../images/burgerIcon.png);
+        background-repeat: no-repeat;
+        background-color: transparent;
+        border: none;
+        background-position: center;
+        width: 44px;
+        height: 44px;
+    }
 }

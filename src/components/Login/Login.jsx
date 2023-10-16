@@ -1,7 +1,40 @@
 import HomeButton from "../HomeButton/HomeButton";
 import "./Login.css";
+import useValidationForFrom from "../../utils/useValidationForFrom";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 
-export default function Login() {
+export default function Login({ handleLogin, isLoggedIn }) {
+  const { values, errors, isValid, handleChange } = useValidationForFrom();
+  const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  let location = useLocation();
+
+  if (isLoggedIn) {
+    return (
+      <Navigate
+        to="/movies"
+        state={{ from: location }}
+        replace
+      />
+    );
+  }
+
+  function handleSubmit(e) {
+    setIsLoading(true);
+    e.preventDefault();
+    handleLogin(values)
+      .catch((err) => {
+        setServerError(err);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  function handleInputChange(e) {
+    handleChange(e);
+    setServerError("");
+  }
+
   return (
     <main className="login">
       <div className="login__logo">
@@ -9,33 +42,80 @@ export default function Login() {
       </div>
       <div className="login__container">
         <h1 className="login__title">Рады видеть!</h1>
-        <form className="login__form">
+        <form
+          className="login__form"
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <fieldset className="login__inputs">
             <label className="login__label">
               E-mail
-              <input className="login__input" name="email" id="email" type="text" placeholder="Email" />
+              <input
+                className={errors.email ? "login__input login__input-error" : "login__input"}
+                name="email"
+                id="email"
+                required
+                type="text"
+                placeholder="Email"
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
             </label>
-            <span className="login__error-message" id="email-error"></span>
+            <span
+              className="login__error-message"
+              id="email-error"
+            >
+              {errors.email}
+            </span>
           </fieldset>
           <fieldset className="login__inputs">
             <label className="login__label">
               Пароль
-              <input className="login__input" name="password" id="password" type="text" minLength={6} maxLength={15} required placeholder="Пароль" />
+              <input
+                className={errors.email ? "login__input login__input-error" : "login__input"}
+                name="password"
+                id="password"
+                type="password"
+                minLength={6}
+                maxLength={15}
+                required
+                placeholder="Пароль"
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
             </label>
-            <span className="login__error-message" id="password-error"></span>
+            <span
+              className="login__error-message"
+              id="password-error"
+            >
+              {errors.password}
+            </span>
           </fieldset>
-        </form>
-        <div className="login__button-common-container">
-          <button type="submit" className="login__button">
-            Войти
-          </button>
-          <div className="login__link-container">
-            <span className="login__link-already-registered">Еще не зарегистрированы?</span>
-            <a className="login__link-signin" href="/signup">
-              Регистрация
-            </a>
+          <div className="login__button-common-container">
+            <span
+              className="login__error-message login__error-message_type_server"
+              id="server-error"
+            >
+              {serverError.message}
+            </span>
+            <button
+              type="submit"
+              disabled={!isValid || isLoading}
+              className="login__button"
+            >
+              Войти
+            </button>
+            <div className="login__link-container">
+              <span className="login__link-already-registered">Еще не зарегистрированы?</span>
+              <Link
+                className="login__link-signin"
+                to="/signup"
+              >
+                Регистрация
+              </Link>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </main>
   );

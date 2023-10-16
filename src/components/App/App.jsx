@@ -7,18 +7,86 @@ import Profile from "../Profile/Profile.jsx";
 import Register from "../Register/Register.jsx";
 import Movies from "../Movies/Movies.jsx";
 import NotFound from "../NotFound/NotFound";
+import { login, logout, signup } from "../../utils/MainApi";
+import { useState } from "react";
+import { initCache, initJwt, isJwtTokenExist } from "../../utils/localStorage";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(isJwtTokenExist());
+
+  function handleLogin(values) {
+    return login(values.email, values.password).then((token) => {
+      initJwt(token);
+      initCache();
+      setIsLoggedIn(true);
+    });
+  }
+
+  function handleLogout() {
+    logout().then(() => setIsLoggedIn(false));
+  }
+
+  function handleRegister(userDetails) {
+    return signup(userDetails).then(() => {
+      return handleLogin({ email: userDetails.email, password: userDetails.password });
+    });
+  }
+
   return (
     <div className="app">
       <Routes>
-        <Route path="/signin" element={<Login />} />
-        <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/saved-movies" element={<SavedMovies />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="*" element={<NotFound />} />
+        <Route
+          path="/"
+          element={<Main isLoggedIn={isLoggedIn} />}
+        />
+        <Route
+          path="/movies"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Movies />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/saved-movies"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <SavedMovies />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <ProtectedRoute isLoggedIn={isLoggedIn}>
+              <Profile handleLogout={handleLogout} />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/signin"
+          element={
+            <Login
+              handleLogin={handleLogin}
+              isLoggedIn={isLoggedIn}
+            />
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <Register
+              handleRegister={handleRegister}
+              isLoggedIn={isLoggedIn}
+            />
+          }
+        />
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
       </Routes>
     </div>
   );

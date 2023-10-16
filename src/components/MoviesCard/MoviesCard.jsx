@@ -1,8 +1,20 @@
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
+import React from "react";
 
-export default function MoviesCard({ movie, isSaved }) {
+function formatDuration(duration) {
+  const hours = Math.trunc(duration / 60);
+  const minutes = duration % 60;
+  if (hours === 0) {
+    return `${minutes}м`;
+  } else {
+    return `${hours}ч ${minutes}м`;
+  }
+}
+
+export default function MoviesCard({ movie, onSaveClick, onDeleteClick }) {
   let location = useLocation();
+  const isSaved = Boolean(movie.idMainDb);
 
   return (
     <li className="movies-card">
@@ -13,37 +25,40 @@ export default function MoviesCard({ movie, isSaved }) {
               <button
                 type="button"
                 className="movies-card__button movies-card__button_type_saved"
-                onClick={() => {
-                  console.log("click on button delete from saved");
-                }}
+                onClick={() => onDeleteClick(movie)}
               ></button>
             ) : (
               <button
                 type="button"
                 className="movies-card__button movies-card__button_type_unsaved"
-                onClick={() => {
-                  console.log("click on button save to saved");
-                }}
+                onClick={() => onSaveClick(movie)}
               >
                 Сохранить
               </button>
             ))}
-
           {location.pathname === "/saved-movies" && (
             <button
               type="button"
               className="movies-card__button movies-card__button_type_delete"
-              onClick={() => {
-                console.log("click on button for delete");
-              }}
+              onClick={() => onDeleteClick(movie)}
             ></button>
           )}
-
-          <img src={movie.src} className="movies-card__preview" alt={movie.title} />
+          <a
+            className="movies-cards__trailer-link link"
+            href={movie.trailerLink}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              src={movie.image}
+              className="movies-card__preview"
+              alt={movie.nameRU}
+            />
+          </a>
         </div>
         <div className="movies-card__description">
-          <h2 className="movies-card__title">{movie.title}</h2>
-          <p className="movies-card__duration">{movie.duration}</p>
+          <h2 className="movies-card__title">{movie.nameRU}</h2>
+          <p className="movies-card__duration">{formatDuration(movie.duration)}</p>
         </div>
       </article>
     </li>

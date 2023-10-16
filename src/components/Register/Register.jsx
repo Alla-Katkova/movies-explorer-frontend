@@ -1,7 +1,42 @@
 import HomeButton from "../HomeButton/HomeButton.jsx";
 import "./Register.css";
+import { Link, Navigate, useLocation } from "react-router-dom";
+import useValidationForFrom from "../../utils/useValidationForFrom";
+import { useState } from "react";
+import { usernamePattern } from "../../utils/regex";
 
-export default function Register() {
+export default function Register({ isLoggedIn, handleRegister }) {
+  const { values, errors, isValid, handleChange } = useValidationForFrom();
+  const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  let location = useLocation();
+
+  if (isLoggedIn) {
+    return (
+      <Navigate
+        to="/movies"
+        state={{ from: location }}
+        replace
+      />
+    );
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    handleRegister(values)
+      .catch((error) => {
+        setServerError(error);
+      })
+      .finally(() => setIsLoading(false));
+  }
+
+  function handleInputChange(e) {
+    handleChange(e);
+    setServerError("");
+  }
+
   return (
     <main className="register">
       <div className="register__logo">
@@ -9,40 +44,104 @@ export default function Register() {
       </div>
       <div className="register__container">
         <h1 className="register__title">Добро пожаловать!</h1>
-        <form className="register__form">
+        <form
+          className="register__form"
+          noValidate
+          onSubmit={handleSubmit}
+        >
           <fieldset className="register__inputs">
             <label className="register__label">
               Имя
-              <input className="register__input" name="name" id="name" type="text" minLength={2} maxLength={15} required placeholder="Имя" />
+              <input
+                className="register__input"
+                name="name"
+                id="name"
+                type="text"
+                minLength={2}
+                maxLength={15}
+                required
+                pattern={usernamePattern}
+                placeholder="Имя"
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
             </label>
-            <span className="register__error-message" id="name-error"></span>
+            <span
+              className="register__error-message"
+              id="name-error"
+            >
+              {errors.name}
+            </span>
           </fieldset>
           <fieldset className="register__inputs">
             <label className="register__label">
               E-mail
-              <input className="register__input" name="email" id="email" type="text" required placeholder="Email" />
+              <input
+                className="register__input"
+                name="email"
+                id="email"
+                type="text"
+                required
+                placeholder="Email"
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
             </label>
-            <span className="register__error-message" id="email-error"></span>
+            <span
+              className="register__error-message"
+              id="email-error"
+            >
+              {errors.email}
+            </span>
           </fieldset>
           <fieldset className="register__inputs">
             <label className="register__label">
               Пароль
-              <input className="register__input" name="password" id="password" type="text" minLength={6} maxLength={15} required placeholder="Пароль" />
+              <input
+                className="register__input"
+                name="password"
+                id="password"
+                type="text"
+                minLength={6}
+                maxLength={15}
+                required
+                placeholder="Пароль"
+                onChange={handleInputChange}
+                disabled={isLoading}
+              />
             </label>
-            <span className="register__error-message" id="password-error"></span>
+            <span
+              className="register__error-message"
+              id="password-error"
+            >
+              {errors.password}
+            </span>
           </fieldset>
-        </form>
-        <div className="register__button-common-container">
-          <button type="submit" className="register__button">
-            Зарегистрироваться
-          </button>
-          <div className="register__link-container">
-            <span className="register__link-already-registered">Уже зарегистрированы?</span>
-            <a className="register__link-signin" href="/signin">
-              Войти
-            </a>
+          <div className="register__button-common-container">
+            <span
+              className="register__error-message register__error-message_type_server"
+              id="server-error"
+            >
+              {serverError.message}
+            </span>
+            <button
+              type="submit"
+              disabled={!isValid || isLoading}
+              className="register__button"
+            >
+              Зарегистрироваться
+            </button>
+            <div className="register__link-container">
+              <span className="register__link-already-registered">Уже зарегистрированы?</span>
+              <Link
+                className="register__link-signin"
+                to="/signin"
+              >
+                Войти
+              </Link>
+            </div>
           </div>
-        </div>
+        </form>
       </div>
     </main>
   );
