@@ -16,19 +16,19 @@ export default function useValidationForFrom() {
       return { ...oldValues, [name]: value };
     });
 
-    if (name === "email" && !isEmail(value)) {
-      setErrors((oldErrors) => {
-        return { ...oldErrors, [name]: "Неправильный формат" };
-      });
-      setIsValid(false);
-      return;
-    }
+    let errorMessages = { ...errors };
 
+    if (name === "email" && !isEmail(value)) {
+      errorMessages = { ...errorMessages, [name]: "Введите корректный email." };
+    } else {
+      errorMessages = { ...errorMessages, [name]: validationMessage };
+    }
     setErrors((oldErrors) => {
-      return { ...oldErrors, [name]: validationMessage };
+      return { ...oldErrors, ...errorMessages };
     });
 
-    setIsValid(form.checkValidity());
+    const hasErrors = Object.values(errorMessages).some((error) => error);
+    setIsValid(!hasErrors && form.checkValidity());
   }
 
   const setValue = useCallback((name, value) => {
@@ -37,11 +37,5 @@ export default function useValidationForFrom() {
     });
   }, []);
 
-  function resetForm(dataOld = {}) {
-    setValues(dataOld);
-    setErrors({});
-    setIsValid(false);
-  }
-
-  return { values, errors, isValid, handleChange, setValue, resetForm };
+  return { values, errors, isValid, handleChange, setValue };
 }
